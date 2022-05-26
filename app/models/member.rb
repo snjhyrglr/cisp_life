@@ -7,6 +7,6 @@ class Member < ApplicationRecord
   has_many :quotes, through: :quote_item
 
   def to_s
-    "#{ firstName ? firstName : "-" } #{ middleName ? middleName[0] : "-" }. #{ lastName ? lastName : "-" } #{ suffix ? suffix : "-" }"
+    "#{ firstName ? firstName : "-" } #{middleName ? middleName[0] : "" }. #{ lastName ? lastName : "-" } #{ suffix ? suffix : "-" }"
   end
 end

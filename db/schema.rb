@@ -221,8 +221,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_23_062805) do
     t.decimal "max_coverage", precision: 10, scale: 2
     t.decimal "rate", precision: 10, scale: 2
     t.decimal "coop_comm_rate", precision: 10, scale: 2
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_rates_on_product_id"
   end
 
   create_table "rider_adbs", charset: "utf8mb4", force: :cascade do |t|

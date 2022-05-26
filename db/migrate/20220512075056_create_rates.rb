@@ -7,6 +7,7 @@ class CreateRates < ActiveRecord::Migration[7.0]
       t.decimal :max_coverage, precision: 10, scale: 2
       t.decimal :rate, precision: 10, scale: 2
       t.decimal :coop_comm_rate, precision: 10, scale: 2
+      t.references :product
 
       t.timestamps
     end
