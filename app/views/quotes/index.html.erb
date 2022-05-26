@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Quotes</h1>
+
+<div id="quotes">
+
+  <table class="table table-hover table-stripped">
+    <thead>
+      <tr class="text-center">
+        <th>Product</th>
+        <th>Cooperative</th>
+        <th>Branch</th>
+        <th>Batch No.</th>
+        <th>Gross Premium</th>
+        <th>Service Fee</th>
+        <th>Net Premium</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @quotes.each do |quote| %>
+      <tr class="text-center">
+        <td><%= quote.product.name %></td>
+        <td><%= quote.cooperative.name %></td>
+        <td><%= quote.cooperative_branch.name %></td>
+        <td><%= quote.quote_no %></td>
+        <td><%= number_to_currency(quote.gross_prem, locale: :ph) %></td>
+        <td><%= number_to_currency(quote.service_fee, locale: :ph) %></td>
+        <td><%= number_to_currency(quote.net_prem, locale: :ph) %></td>
+        <td><%= link_to "Show", quote_path(quote), class: "link link-success" %> | <%= link_to "Delete", quote_path(quote), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link link-danger"%> </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

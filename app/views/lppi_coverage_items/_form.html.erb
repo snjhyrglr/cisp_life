@@ -1,0 +1,25 @@
+
+<%= simple_form_for(@lppi_coverage_item) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :lppi_coverage %>
+    <%= f.association :member %>
+    <%= f.input :coverage %>
+    <%= f.association :rate %>
+    <%= f.input :prem_rate %>
+    <%= f.input :gross_prem %>
+    <%= f.input :service_fee %>
+    <%= f.input :net_prem %>
+
+    <%= f.simple_fields_for :lppi_coverage do |lc| %>
+      <%= lc.input :effectivity, wrapper_html: { class: "col-md-6" } %>
+      <%= lc.input :expiry, wrapper_html: { class: "col-md-6" } %>
+    <% end %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

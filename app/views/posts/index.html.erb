@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= post.title%></td>
+        <td><%= post.content%></td>
+        <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-outline-info" %> | <%= link_to 'Delete', post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path, class: "btn btn-outline-success" %>

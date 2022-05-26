@@ -1,0 +1,17 @@
+
+<%= simple_form_for(@beneficiary) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :member, collection: Member.order(:lastName), prompt: "Choose a member", input_html: { class: "form-select" } %>
+    <%= f.input :name %>
+    <%= f.input :age %>
+    <%= f.input :relationship, collection: ["Spouse","Child","Parents","Siblings"], input_html: { class: "form-select" } %>
+    <%= f.input :I_R, label: "Irrevocable/Revocable" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-outline-primary mt-3" %>
+  </div>
+<% end %>

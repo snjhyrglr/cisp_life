@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @rider_adb %>
+
+<div>
+  <%= link_to "Edit this rider adb", edit_rider_adb_path(@rider_adb) %> |
+  <%= link_to "Back to rider adbs", rider_adbs_path %>
+
+  <%= button_to "Destroy this rider adb", @rider_adb, method: :delete %>
+</div>

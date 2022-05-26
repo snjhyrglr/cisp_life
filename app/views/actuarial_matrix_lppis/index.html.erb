@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>LPPI Matrix Rates</h1>
+
+<div id="actuarial_matrix_lppis">
+  <table class="table table-stripped table-hover">
+      <thead>
+        <tr>
+          <th>Min Age</th>
+          <th>Max Age</th>
+          <th>Min Annual Rate</th>
+          <th>Max Annual Rate</th>
+          <th>Max Allowed Comm</th>
+          <th>Rider: ADD/TPD rate</th>
+          <th>Rider: ADB rate</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @actuarial_matrix_lppis.each do |aml| %>
+        <tr>
+          <td><%= aml.min_age %></td>
+          <td><%= aml.max_age %></td>
+          <td><%= aml.min_annual_prem_rate %></td>
+          <td><%= aml.max_annual_prem_rate %></td>
+          <td><%= aml.max_allowed_comm %></td>
+          <td><%= aml.rider_add_tpd.rate %></td>
+          <td><%= aml.rider_adb.rate %></td>
+          <td><%= link_to 'Edit', edit_actuarial_matrix_lppi_path(aml), class: "btn btn-outline-info" %> <%= link_to 'Delete', actuarial_matrix_lppi_path(aml), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to "New actuarial matrix lppi", new_actuarial_matrix_lppi_path %>

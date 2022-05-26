@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @cooperative %>
+
+<div>
+  <%= link_to "Back to cooperatives", cooperatives_path %>
+
+  <%= button_to "Destroy this cooperative", @cooperative, method: :delete %>
+</div>

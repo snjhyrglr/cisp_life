@@ -1,0 +1,24 @@
+
+<%= simple_form_for(@employee_profile) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :employee_user %>
+    <div data-controller="departments">
+      <%= f.association :division, input_html: { class: "form-select", data: { action: "change->departments#change" } } %>
+      <%= f.association :department, input_html: { class: "form-select", id: "department_id", data: { departments_target: "departmentSelect"} } %>
+    </div>
+    <%= f.input :employee_no %>
+    <%= f.input :last_name %>
+    <%= f.input :first_name %>
+    <%= f.input :middle_name %>
+    <%= f.input :suffix %>
+    <%= f.input :birthdate %>
+    <%= f.input :age %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

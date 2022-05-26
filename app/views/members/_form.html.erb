@@ -1,0 +1,31 @@
+
+<%= simple_form_for(@member) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div data-controller="branches">
+        <%= f.association :cooperative, input_html: { class: "form-select", data: { action: "change->branches#change" } } %>
+        <%= f.association :cooperative_branch, input_html: { class: "form-select", id: "branch_id", data: { branches_target: "branchSelect"} } %>
+      </div>
+    </div>
+
+    <div class="row">
+        <%= f.input :lastName, label: "Last name", wrapper_html: { class: 'col-md-3'} %>
+        <%= f.input :firstName, label: "First name", wrapper_html: { class: 'col-md-3'} %>
+        <%= f.input :middleName, label: "Middle name", wrapper_html: { class: 'col-md-3'} %>
+        <%= f.input :suffix, wrapper_html: { class: 'col-md-3'} %>
+    </div>
+    
+    <%= f.input :birthdate, label: "Birth date", as: :date, start_year: Time.now.year - 90, end_year: Time.now.year - 8, order: [:month, :day, :year] %>
+    <div class="row">
+      <%= f.input :gender, input_html: { class: "form-select"}, wrapper_html: { class: 'col-md-6'},collection: ["Male","Female"] %>
+      <%= f.input :civil_status, input_html: { class: "form-select"}, wrapper_html: { class: 'col-md-6'}, collection: ["Single","Married","Widowed","Separated"] %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-outline-primary mt-3" %>
+  </div>
+<% end %>

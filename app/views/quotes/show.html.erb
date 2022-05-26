@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<%= content_tag :h1, 'LPPI Quotation', class: "text-center" %>
+
+<div class="card col-6 mb-2">
+  <div class="card-body">
+    <%= content_tag :h4, @quote.cooperative.name, class: 'card-title' %>
+    <%= content_tag :p, @quote.cooperative_branch.name, class: 'card-subtitle fw-bold fst-italic'%>
+  </div>
+  <div class="card-footer">
+    <%= content_tag :p, "Date Created: #{@quote.created_at.strftime("%d %b %Y")}", class: 'mb-0' %>
+    <%= content_tag :p, "Batch No.: #{@quote.quote_no}", class: 'fw-bold' %>
+  </div>
+</div>
+
+<table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Effectivity</th>
+        <th>Expiry</th>
+        <th>Term</th>
+        <th>Coverage</th>
+        <th>Gross Premium</th>
+        <th>Service Fee</th>
+        <th>Net Premium</th>
+
+      </tr>
+    </thead>
+    <tbody>
+    <% @quote.quote_items.each do |q| %>
+      <tr>
+        <td><%= q.member %></td>
+        <td><%= q.age %></td>
+        <td><%= q.effectivity %></td>
+        <td><%= q.expiry %></td>
+        <td><%= q.term %></td>
+        <td><%= number_to_currency(q.coverage, locale: :ph) %></td>
+        <td><%= number_to_currency(q.gross_prem, locale: :ph) %></td>
+        <td><%= number_to_currency(q.service_fee, locale: :ph) %></td>
+        <td><%= number_to_currency(q.net_prem, locale: :ph) %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+

@@ -1,0 +1,5 @@
+<%= turbo_stream.update @target do %>
+	<%= @members.each do |mem| %>
+		<%= content_tag :option, mem, value: mem.id %>
+	<% end %>
+<% end %>

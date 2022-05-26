@@ -1,0 +1,10 @@
+<h1>Editing employee profile</h1>
+
+<%= render "form", employee_profile: @employee_profile %>
+
+<br>
+
+<div>
+  <%= link_to "Show this employee profile", @employee_profile %> |
+  <%= link_to "Back to employee profiles", employee_profiles_path %>
+</div>

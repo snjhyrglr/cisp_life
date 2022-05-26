@@ -1,0 +1,5 @@
+<%= turbo_stream.update @target do %>
+    <%= @branches.each do |branch| %>
+        <%= content_tag :option, branch.name, value: branch.id %>
+    <% end %>
+<% end %>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lppi coverage items</h1>
+
+<div id="lppi_coverage_items">
+  <% @lppi_coverage_items.each do |lppi_coverage_item| %>
+    <%= render lppi_coverage_item %>
+    <p>
+      <%= link_to "Show this lppi coverage item", lppi_coverage_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New lppi coverage item", new_lppi_coverage_item_path %>

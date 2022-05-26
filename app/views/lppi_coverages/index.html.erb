@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lppi coverages</h1>
+
+
+<table class="table table-hover table-stripped">
+  <thead>
+    <tr>
+      <td>Batch</td>
+      <td>Cooperative</td>
+      <td>Branch</td>
+      <td>Member Name</td>
+      <td>Birthday</td>
+      <td>Gender</td>
+      <td>Age</td>
+      <td>Effectivity</td>
+      <td>Expiry</td>
+      <td>Terms</td>
+      <td>Coverage</td>
+      <td>Gross Premium</td>
+      <td>Service Fee</td>
+      <td>Net Premium</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lppi_coverages.each do |lc| %>
+    <tr>
+      <td><%= lc.batch %></td>
+      <td><%= lc.cooperative %></td>
+      <td><%= lc.cooperative_branch %></td>
+      <td><%= lc.member %></td>
+      <td><%= lc.member.birthdate %></td>
+      <td><%= lc.member.gender %></td>
+      <td><%= lc.age %></td>
+      <td><%= lc.effectivity %></td>
+      <td><%= lc.expiry %></td>
+      <td><%= lc.terms %></td>
+      <td><%= number_to_currency(lc.coverage, locale: :ph) %></td>
+      <td><%= number_to_currency(lc.gross_prem, locale: :ph) %></td>
+      <td><%= number_to_currency(lc.service_fee, locale: :ph) %></td>
+      <td><%= number_to_currency(lc.net_prem, locale: :ph) %></td>
+    </tr>
+  </tbody>
+    <% end %>
+</table>
+
+<%= link_to "New lppi coverage", new_lppi_coverage_path %>

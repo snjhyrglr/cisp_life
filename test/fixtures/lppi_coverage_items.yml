@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lppi_coverage: one
+  member: one
+  coverage: 9.99
+  rate: one
+  prem_rate: 9.99
+  gross_prem: 9.99
+  service_fee: 9.99
+  net_prem: 9.99
+
+two:
+  lppi_coverage: two
+  member: two
+  coverage: 9.99
+  rate: two
+  prem_rate: 9.99
+  gross_prem: 9.99
+  service_fee: 9.99
+  net_prem: 9.99

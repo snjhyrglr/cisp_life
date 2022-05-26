@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Rider adbs</h1>
+
+<div id="rider_adbs">
+  <% @rider_adbs.each do |rider_adb| %>
+    <%= render rider_adb %>
+    <p>
+      <%= link_to "Show this rider adb", rider_adb %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New rider adb", new_rider_adb_path %>

@@ -1,0 +1,15 @@
+
+<%= simple_form_for(@cooperative_branch) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :cooperative, input_html: { class: "form-select" } %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-outline-primary mt-3" %>
+  </div>
+<% end %>

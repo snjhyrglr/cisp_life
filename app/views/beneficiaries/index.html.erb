@@ -1,0 +1,37 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Beneficiaries</h1>
+
+<div id="beneficiaries">
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Beneficiary Name</th>
+        <th>Age</th>
+        <th>Relationship</th>
+        <th>Member Name</th>
+        <th>Irrevocable/Revocable</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+  <% @beneficiaries.each do |beneficiary| %>
+   <tr>
+        <td><%= beneficiary.name %></td>
+        <td><%= beneficiary.age %></td>
+        <td><%= beneficiary.relationship%></td>
+        <td><%= beneficiary.member %></td>
+        <td><%= beneficiary.I_R  ? "Irrevocable" : "Revocable" %></td>
+        <td><%= link_to 'Edit', edit_beneficiary_path(beneficiary), class: "btn btn-outline-info" %> <%= link_to 'Delete', beneficiary_path(beneficiary), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+
+  <div class="digg_pagination mb-3 float-end">
+    <%= will_paginate @beneficiaries, :container => false %>
+  </div>
+
+</div>
+
+
+<%= link_to "New beneficiary", new_beneficiary_path, class: "btn btn-outline-success" %>

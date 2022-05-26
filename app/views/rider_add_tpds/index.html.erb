@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Rider add tpds</h1>
+
+<div id="rider_add_tpds">
+  <% @rider_add_tpds.each do |rider_add_tpd| %>
+    <%= render rider_add_tpd %>
+    <p>
+      <%= link_to "Show this rider add tpd", rider_add_tpd %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New rider add tpd", new_rider_add_tpd_path %>

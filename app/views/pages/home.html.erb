@@ -1,0 +1,16 @@
+  <div class="container" id="home-container">
+      <div class="text-center text-black" id="jumbotron">
+        <div id="bg"></div>
+        <h1 class="display-4">1CISP Life</h1>
+        <p class="lead">This is a web app for 1CISP Life division</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content</p>
+        <%= link_to "Sign-up", cooperatives_path, class: "btn btn-success btn-lg disabled" %>
+        <div class="mt-3">
+          <%= form_tag  import_cooperatives_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Import" %>
+          <% end %>
+        </div>
+      </div>
+  </div>

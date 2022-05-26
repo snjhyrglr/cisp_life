@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lastName: MyString
+  firstName: MyString
+  middleName: MyString
+  suffix: MyString
+  birthdate: 2022-04-28
+  gender: MyString
+  cooperative_id: one
+  cooperative_branch_id: one
+
+two:
+  lastName: MyString
+  firstName: MyString
+  middleName: MyString
+  suffix: MyString
+  birthdate: 2022-04-28
+  gender: MyString
+  cooperative_id: two
+  cooperative_branch_id: two

@@ -1,0 +1,44 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Members</h1>
+
+<div id="members">
+
+  <div class="digg_pagination mb-3 float-end">
+    <%= will_paginate @cooperatives, :container => false %>
+  </div>
+  
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Cooperative Name</th>
+        <th>Branch Name</th>
+        <th>Member's Name</th>
+        <th>Birth date</th>
+        <th>Gender</th>
+        <th>Civil Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @members.each do |member| %>
+       <tr>
+        <td><%= member.cooperative.name %></td>
+        <td><%= member.cooperative_branch.name %></td>
+        <td><%= member.lastName%>, <%= member.firstName %> <%= member.middleName.slice(0)%>.</td>
+        <td><%= member.birthdate %></td>
+        <td><%= member.gender %></td>
+        <td><%= member.civil_status %></td>
+        <td><%= link_to 'Edit', edit_member_path(member), class: "btn btn-outline-info" %> <%= link_to 'Delete', member_path(member), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+
+  <div class="digg_pagination mb-3 float-end">
+    <%= will_paginate @cooperatives, :container => false %>
+  </div>
+
+</div>
+
+<%= link_to "New member", new_member_path, class: "btn btn-outline-success" %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @lppi_coverage_item %>
+
+<div>
+  <%= link_to "Edit this lppi coverage item", edit_lppi_coverage_item_path(@lppi_coverage_item) %> |
+  <%= link_to "Back to lppi coverage items", lppi_coverage_items_path %>
+
+  <%= button_to "Destroy this lppi coverage item", @lppi_coverage_item, method: :delete %>
+</div>

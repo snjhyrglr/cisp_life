@@ -1,0 +1,28 @@
+
+<%= simple_form_for(@lppi_coverage) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div data-controller="branches">
+      <%= f.association :cooperative, input_html: { class: "form-select", data: { action: "change->branches#change" } } %>
+      <div data-controller="members">
+        <%= f.association :cooperative_branch, input_html: { class: "form-select", id: "branch_id", data: { branches_target: "branchSelect", action: "change->members#change"} } %>
+        <%= f.association :member, input_html: { class: "form-select", id: "member_id", data: { members_target: "memberSelect"} } %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.association :batch, wrapper_html: { class: "col-md-6" } %>
+      <%= f.association :product, wrapper_html: { class: "col-md-6" } %>
+    </div>
+    <div class="row">
+      <%= f.input :effectivity, wrapper_html: { class: "col-md-6" } %>
+      <%= f.input :expiry, wrapper_html: { class: "col-md-6" } %>
+    </div>
+    <%= f.input :coverage%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-outline-success mt-3" %>
+  </div>
+<% end %>

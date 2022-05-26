@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>List of Cooperative branches</h1>
+
+<div id="cooperative_branches">
+  
+    <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Cooperative Name</th>
+        <th>Branch Name</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+   <% @cooperative_branches.each do |cooperative_branch| %>
+      <tr>
+        <td><%= cooperative_branch.cooperative.name%></td>
+        <td><%= cooperative_branch.name%></td>
+        <td><%= cooperative_branch.address%></td>
+        <td><%= link_to 'Edit', edit_cooperative_branch_path(cooperative_branch), class: "btn btn-outline-info" %> <%= link_to 'Delete', cooperative_branch_path(cooperative_branch), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+
+   <div class="digg_pagination mb-3 float-end">
+    <%= will_paginate @cooperative_branches, :container => false %>
+  </div>
+
+</div>
+
+<%= link_to "New cooperative branch", new_cooperative_branch_path, class: "btn btn-outline-success" %>

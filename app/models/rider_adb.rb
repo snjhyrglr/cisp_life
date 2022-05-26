@@ -1,0 +1,2 @@
+class RiderAdb < ApplicationRecord
+end

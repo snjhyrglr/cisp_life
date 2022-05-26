@@ -1,0 +1,33 @@
+<div id="<%= dom_id employee_profile %>">
+  <%= content_tag :h1, employee_profile.full_name %>
+  <p>
+    <strong>Employee user:</strong>
+    <%= employee_profile.employee_user.username %>
+  </p>
+
+  <p>
+    <strong>Department:</strong>
+    <%= employee_profile.department_id %>
+  </p>
+
+  <p>
+    <strong>Division:</strong>
+    <%= employee_profile.division_id %>
+  </p>
+
+  <p>
+    <strong>Employee no:</strong>
+    <%= employee_profile.employee_no %>
+  </p>
+
+  <p>
+    <strong>Birthdate:</strong>
+    <%= employee_profile.birthdate %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= employee_profile.age %>
+  </p>
+
+</div>

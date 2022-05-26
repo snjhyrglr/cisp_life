@@ -1,0 +1,5 @@
+<%= turbo_stream.update @target do %>
+	<%= @departments.each do |dept| %>
+		<%= content_tag :option, dept.name, value: dept.id %>
+	<% end %>
+<% end %>
