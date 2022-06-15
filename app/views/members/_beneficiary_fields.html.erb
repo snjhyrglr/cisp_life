@@ -1,0 +1,7 @@
+<div class="wrapper-div">
+  <%= ff.input :name %>
+  <%= ff.input :age %>
+  <%= ff.input :relationship, collection: ["Spouse","Child","Parents","Siblings"], input_html: { class: "form-select" } %>
+  <%= ff.input :I_R, label: "Irrevocable/Revocable" %>
+  <%= link_to_remove_nested(ff) %> <!-- adds a link to add more items -->
+</div>

@@ -1,0 +1,26 @@
+
+<%= simple_form_for(@lppi_rate) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :min_age %>
+    <%= f.input :max_age %>
+    <%= f.input :min_coverage %>
+    <%= f.input :max_coverage %>
+    <%= f.input :min_annual_rate %>
+    <%= f.input :max_annual_rate %>
+    <%= f.input :min_monthly_rate %>
+    <%= f.input :max_monthly_rate %>
+    <%= f.input :max_allowed_comm %>
+    <%= f.association :add_tpd_annual %>
+    <%= f.association :rider_add_tpd %>
+    <%= f.input :add_tpd_rate %>
+    <%= f.association :rider_adb %>
+    <%= f.input :adb_rate %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

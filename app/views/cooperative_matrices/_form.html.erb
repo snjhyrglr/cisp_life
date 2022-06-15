@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@cooperative_matrix) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :cooperative, input_html: { class: "form-select" } %>
+    <%= f.input :cooperative_incharge %>
+    <%= f.input :incharge_position %>
+    <%= f.input :premium_rate %>
+    <%= f.input :add_tpd_enable, label: "ADD/TP Rider" %>
+    <%= f.input :adb_enable, label: "ADB Rider" %>
+    <%= f.input :coop_service_fee %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_23_062805) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_14_053442) do
   create_table "actuarial_matrix_lppis", charset: "utf8mb4", force: :cascade do |t|
     t.integer "min_age"
     t.integer "max_age"
@@ -52,6 +52,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_23_062805) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cooperative_id"], name: "index_cooperative_branches_on_cooperative_id"
+  end
+
+  create_table "cooperative_matrices", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "cooperative_id", null: false
+    t.bigint "lppi_rate_id", null: false
+    t.string "cooperative_incharge"
+    t.string "incharge_position"
+    t.decimal "premium_rate", precision: 5, scale: 2
+    t.boolean "add_tpd_enable"
+    t.decimal "add_tpd_rate", precision: 5, scale: 2
+    t.boolean "adb_enable"
+    t.decimal "adb_rate", precision: 5, scale: 2
+    t.decimal "total_premium_rate", precision: 5, scale: 2
+    t.decimal "coop_service_fee", precision: 5, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cooperative_id"], name: "index_cooperative_matrices_on_cooperative_id"
+    t.index ["lppi_rate_id"], name: "index_cooperative_matrices_on_lppi_rate_id"
   end
 
   create_table "cooperatives", charset: "utf8mb4", force: :cascade do |t|
@@ -143,6 +161,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_23_062805) do
     t.index ["cooperative_id"], name: "index_lppi_coverages_on_cooperative_id"
     t.index ["member_id"], name: "index_lppi_coverages_on_member_id"
     t.index ["product_id"], name: "index_lppi_coverages_on_product_id"
+  end
+
+  create_table "lppi_rates", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "min_age"
+    t.integer "max_age"
+    t.decimal "min_coverage", precision: 15, scale: 2
+    t.decimal "max_coverage", precision: 15, scale: 2
+    t.decimal "min_annual_rate", precision: 5, scale: 3
+    t.decimal "max_annual_rate", precision: 5, scale: 3
+    t.decimal "min_monthly_rate", precision: 5, scale: 3
+    t.decimal "max_monthly_rate", precision: 5, scale: 3
+    t.decimal "max_allowed_comm", precision: 5, scale: 2
+    t.bigint "rider_add_tpd_id", null: false
+    t.decimal "add_tpd_rate", precision: 5, scale: 2
+    t.bigint "rider_adb_id", null: false
+    t.decimal "adb_rate", precision: 5, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rider_adb_id"], name: "index_lppi_rates_on_rider_adb_id"
+    t.index ["rider_add_tpd_id"], name: "index_lppi_rates_on_rider_add_tpd_id"
   end
 
   create_table "members", charset: "utf8mb4", force: :cascade do |t|
@@ -256,6 +294,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_23_062805) do
   add_foreign_key "batches", "products"
   add_foreign_key "beneficiaries", "members"
   add_foreign_key "cooperative_branches", "cooperatives"
+  add_foreign_key "cooperative_matrices", "cooperatives"
+  add_foreign_key "cooperative_matrices", "lppi_rates"
   add_foreign_key "departments", "divisions"
   add_foreign_key "employee_profiles", "departments"
   add_foreign_key "employee_profiles", "divisions"
@@ -268,6 +308,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_23_062805) do
   add_foreign_key "lppi_coverages", "cooperatives"
   add_foreign_key "lppi_coverages", "members"
   add_foreign_key "lppi_coverages", "products"
+  add_foreign_key "lppi_rates", "rider_adbs"
+  add_foreign_key "lppi_rates", "rider_add_tpds"
   add_foreign_key "members", "cooperative_branches"
   add_foreign_key "members", "cooperatives"
 end

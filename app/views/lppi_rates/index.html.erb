@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lppi rates</h1>
+
+<div id="lppi_rates">
+  <% @lppi_rates.each do |lppi_rate| %>
+    <%= render lppi_rate %>
+    <p>
+      <%= link_to "Show this lppi rate", lppi_rate %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New lppi rate", new_lppi_rate_path %>

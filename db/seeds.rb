@@ -12,6 +12,7 @@
 
 puts "Importing LPPI Rate..."
 
-Rate.import("./db/uploads/rates.xlsx")
+# Rate.import("./db/uploads/rates.xlsx")
+LppiRate.import("./db/uploads/rate_new.xlsx")
 
 # ActuarialMatrixLppi.import("./db/uploads/rate_new.xlsx")

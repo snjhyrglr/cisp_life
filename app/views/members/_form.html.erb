@@ -25,6 +25,13 @@
     </div>
   </div>
 
+  <div id="beneficiaries">
+    <%= f.simple_fields_for :beneficiaries do |ben_f| %>
+      <%= render 'beneficiary_fields', form: ben_f %>
+    <% end %>
+  </div>
+  <%= link_to_add_nested(f, :beneficiaries, '#beneficiaries', partial_form_variable: :ff) %>
+
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-outline-primary mt-3" %>
   </div>

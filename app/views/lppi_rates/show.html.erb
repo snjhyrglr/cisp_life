@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @lppi_rate %>
+
+<div>
+  <%= link_to "Edit this lppi rate", edit_lppi_rate_path(@lppi_rate) %> |
+  <%= link_to "Back to lppi rates", lppi_rates_path %>
+
+  <%= button_to "Destroy this lppi rate", @lppi_rate, method: :delete %>
+</div>

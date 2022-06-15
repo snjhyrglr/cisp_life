@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Cooperative matrices</h1>
+
+<div id="cooperative_matrices">
+  <% @cooperative_matrices.each do |cooperative_matrix| %>
+
+    <table class="table table-black table-hover">
+      <thead>
+        <tr>
+          <td>Cooperative</td>
+          <td>Person In-Charge</td>
+          <td>Position</td>
+          <td>Premium Rate (Annual)</td>
+          <td>ADD/TPD Rate (Annual)</td>
+          <td>ADB Rate (Annual)</td>
+          <td>Total Premium Rate (Annual)</td>
+          <td>Service Fee Rate (%)</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+        <tr>
+          <td><%= cooperative_matrix.cooperative %></td>
+          <td><%= cooperative_matrix.cooperative_incharge %></td>
+          <td><%= cooperative_matrix.incharge_position %></td>
+          <td><%= cooperative_matrix.premium_rate %></td>
+          <td><%= cooperative_matrix.coop_service_fee %></td>
+          <td> <%= link_to "Edit", edit_cooperative_matrix_path(cooperative_matrix) %> | <%= link_to "Delete", cooperative_matrix_path(cooperative_matrix), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %> </td>
+        </tr>
+      <tbody>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<%= link_to "New cooperative matrix", new_cooperative_matrix_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lppi_rates
+  resources :cooperative_matrices
   resources :actuarial_matrix_lppis
   resources :rider_adbs
   resources :rider_add_tpds

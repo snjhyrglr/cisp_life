@@ -74,7 +74,7 @@ class EmployeeUsersController < ApplicationController
     def employee_user_params
       params.require(:employee_user).permit(
         :username, :password,
-        employee_profile_attributes: [:employee_user_id, :department_id, :division_id, :employee_no, :last_name, :first_name, :middle_name, :suffix, :birthdate]
+        employee_profiles_attributes: [:employee_user_id, :department_id, :division_id, :employee_no, :last_name, :first_name, :middle_name, :suffix, :birthdate]
         )
     end
 end
