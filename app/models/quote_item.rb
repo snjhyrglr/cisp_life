@@ -31,7 +31,8 @@ class QuoteItem < ApplicationRecord
     case quote.product_id 
     when 1 
       case self.age 
-      when ..65 then Rate.find_by(max_age: 65).rate # 1.04
+      # when ..65 then Rate.find_by(max_age: 65).rate # 1.04
+      when ..65 then CooperativeMatrix.find_by(cooperative_id: quote.cooperative_id).total_premium_rate / 12 # 1.04
       when ..70   # 3.00
         
         if self.coverage < 300000
@@ -61,7 +62,8 @@ class QuoteItem < ApplicationRecord
     case quote.product_id 
     when 1 
       case self.age 
-      when ..65 then Rate.find_by(max_age: 65).coop_comm_rate # 0.2
+      # when ..65 then Rate.find_by(max_age: 65).coop_comm_rate # 0.2
+      when ..65 then CooperativeMatrix.find_by(cooperative_id: quote.cooperative_id).coop_service_fee
       when ..85   # 0.1
         Rate.find_by(max_age: 85).coop_comm_rate
       else 0 

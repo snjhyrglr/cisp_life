@@ -1,27 +1,40 @@
 <div id="<%= dom_id cooperative_matrix %>">
-  <p>
-    <strong>Cooperative:</strong>
-    <%= cooperative_matrix.cooperative %>
-  </p>
 
-  <p>
-    <strong>Cooperative incharge:</strong>
-    <%= cooperative_matrix.cooperative_incharge %>
-  </p>
+  <div class="card col-md-6 mx-auto mb-3">
+    <div class="card-body">
+      <%= content_tag :h4, cooperative_matrix.cooperative, class: "card-title text-center" %>
+      <%= content_tag :p, cooperative_matrix.cooperative.address, class: "card-subtitle text-center"  %>
+      <%= content_tag :p, "#{cooperative_matrix.cooperative_incharge} - #{cooperative_matrix.incharge_position}", class: "card-subtitle mb-2 text-muted text-center mt-1" %>
 
-  <p>
-    <strong>Incharge position:</strong>
-    <%= cooperative_matrix.incharge_position %>
-  </p>
+      <table class="mx-auto mt-3">
+      <tr>
+        <td class="text-end"><p>Annual Premium Rate:</p></td>
+        <td><%= content_tag :p, cooperative_matrix.premium_rate, class: "ms-5" %></td>
+      </tr>
+      <tr>
+        <td class="text-end"><p>ADD/TPD Rider:</p></td>
+        <td><%= content_tag :p, cooperative_matrix.add_tpd_rate, class: "ms-5" %></td>
+      </tr>
+      <tr>
+        <td class="text-end"><p>ADB Rider:</p></td>
+        <td><%= content_tag :p, cooperative_matrix.adb_rate, class: "ms-5" %></td>
+      </tr>
+      <tr>
+        <td class="text-end"><p>Total Annual Premium Rate:</p></td>
+        <td><%= content_tag :p, cooperative_matrix.total_premium_rate, class: "ms-5" %></td>
+      </tr>
+      <tr>
+        <td class="text-end"><p>Coop Service Fee (%):</p></td>
+        <td><%= content_tag :p, number_to_percentage(cooperative_matrix.coop_service_fee * 100, precision: 0), class: "ms-5" %></td>
+      </tr>
+      </table>
+    </div>
 
-  <p>
-    <strong>Premium rate:</strong>
-    <%= cooperative_matrix.premium_rate %>
-  </p>
+    <div class="text-end mb-2 m">
+      <%= link_to "Edit", edit_cooperative_matrix_path(@cooperative_matrix), class: "btn btn-outline-primary" %>
+      <%= link_to "Back", cooperative_matrices_path, class: "btn btn-outline-success" %>
+  </div>
+  </div>
 
-  <p>
-    <strong>Coop service fee:</strong>
-    <%= cooperative_matrix.coop_service_fee %>
-  </p>
-
+  
 </div>

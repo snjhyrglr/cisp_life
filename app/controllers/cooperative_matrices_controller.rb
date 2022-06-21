@@ -22,7 +22,7 @@ class CooperativeMatricesController < ApplicationController
   # POST /cooperative_matrices or /cooperative_matrices.json
   def create
     @cooperative_matrix = CooperativeMatrix.new(cooperative_matrix_params)
-
+    
     respond_to do |format|
       if @cooperative_matrix.save
 
@@ -66,6 +66,6 @@ class CooperativeMatricesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cooperative_matrix_params
-      params.require(:cooperative_matrix).permit(:cooperative_id, :cooperative_incharge, :incharge_position, :premium_rate, :coop_service_fee, :lppi_rate_id)
+      params.require(:cooperative_matrix).permit(:cooperative_id, :cooperative_incharge, :incharge_position, :premium_rate, :coop_service_fee, :lppi_rate_id, :add_tpd_enable, :add_tpd_rate, :adb_enable, :adb_rate, :total_premium_rate)
     end
 end

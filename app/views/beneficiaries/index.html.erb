@@ -21,7 +21,7 @@
         <td><%= beneficiary.relationship%></td>
         <td><%= beneficiary.member %></td>
         <td><%= beneficiary.I_R  ? "Irrevocable" : "Revocable" %></td>
-        <td><%= link_to 'Edit', edit_beneficiary_path(beneficiary), class: "btn btn-outline-info" %> <%= link_to 'Delete', beneficiary_path(beneficiary), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
+        <td><%= link_to 'Edit', edit_beneficiary_path(beneficiary), class: "btn btn-outline-info" %> <%= link_to 'Delete', beneficiary_path(beneficiary), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %> <%#= button_to 'Del', beneficiary_path(beneficiary), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %></td>
       </tr>
     </tbody>
   <% end %>
