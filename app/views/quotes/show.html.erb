@@ -1,21 +1,95 @@
 <p style="color: green"><%= notice %></p>
 
-<%= content_tag :h1, 'LPPI Quotation', class: "text-center" %>
+<%#= content_tag :h1, 'LPPI Quotation', class: "text-center" %>
+  <div class="card col-6 mb-2 mx-auto text-center">
+    <div class="card-header">
+      <%= content_tag :h4, @quote.cooperative.name, class: 'card-title' %>
+      <%= content_tag :p, @quote.cooperative_branch.name, class: 'card-subtitle fw-bold fst-italic'%>
+    </div>
+    <div class="card-body">
+      <%= content_tag :p, "Batch No.: #{@quote.quote_no}", class: 'fw-bold' %>
+      <table class="mx-auto">
+        <tr>
+          <td class="text-end"><p>Total Sum Insured: </p></td>
+          <td><%= content_tag :p, number_to_currency(@quote.quote_items.sum(:coverage), locale: :ph), class: "text-start ms-5" %></td>
+        </tr>
+        <tr>
+          <td class="text-end"><p>Gross Premium: </p></td>
+          <td><%= content_tag :p, number_to_currency(@quote.gross_prem, locale: :ph), class: "text-start ms-5" %></td>
+        </tr>
+        <tr>
+          <td class="text-end"><p>Coop Service Fee: </p></td>
+          <td><%= content_tag :p, number_to_currency(@quote.service_fee, locale: :ph), class: "text-start ms-5" %></td>
+        </tr>
+        <tr>
+          <td class="text-end"><p>Net Premium: </p></td>
+          <td><%= content_tag :p, number_to_currency(@quote.net_prem, locale: :ph), class: "text-start ms-5" %></td>
+        </tr>
+        <tr>
+          <td class="text-end"><p>Approved Net Premium: </p></td>
+          <td><%= content_tag :p, number_to_currency(@approve_net_prem, locale: :ph), class: "text-start ms-5" %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="card-footer">
+      <%= content_tag :p, "Date Created: #{@quote.created_at.strftime("%d %b %Y")}", class: 'mb-0' %>
+      
+    </div>
+  </div>
 
-<div class="card col-6 mb-2">
-  <div class="card-body">
-    <%= content_tag :h4, @quote.cooperative.name, class: 'card-title' %>
-    <%= content_tag :p, @quote.cooperative_branch.name, class: 'card-subtitle fw-bold fst-italic'%>
+  <div class="row justify-content-md-center">
+    <div class="card border-success mb-3 text-center me-2 col-4" style="max-width: 18rem;">
+      <div class="card-header text-success">Approved</div>
+      <div class="card-body text-success">
+        <table class="ms-3">
+        <tr>
+          <td class="text-end">Coverage: </td>
+          <td><%= content_tag :p, number_to_currency(@approve_coverage, locale: :ph), class: "card-text text-start ms-5" %></td>
+        </tr>
+        <tr>
+          <td class="text-end">Premium: </td>
+          <td><%= content_tag :p, number_to_currency(@approve_net_prem, locale: :ph), class: "card-text text-start ms-5" %></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="card border-secondary mb-3 text-center me-2 col-4" style="max-width: 18rem;">
+      <div class="card-header text-secondary">Pending</div>
+      <div class="card-body text-secondary">
+        <table class="ms-3">
+        <tr>
+          <td class="text-end">Coverage: </td>
+          <td><%= content_tag :p, number_to_currency(@pending_coverage, locale: :ph), class: "card-text text-start ms-5" %></td>
+        </tr>
+        <tr>
+          <td class="text-end">Premium: </td>
+          <td><%= content_tag :p, number_to_currency(@pending_net_prem, locale: :ph), class: "card-text text-start ms-5" %></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card border-danger mb-3 text-center me-2 col-4" style="max-width: 18rem;">
+      <div class="card-header text-danger">Denied</div>
+      <div class="card-body text-danger">
+        <table class="ms-3">
+        <tr>
+          <td class="text-end">Coverage: </td>
+          <td><%= content_tag :p, number_to_currency(@denied_coverage, locale: :ph), class: "card-text text-start ms-5" %></td>
+        </tr>
+        <tr>
+          <td class="text-end">Premium: </td>
+          <td><%= content_tag :p, number_to_currency(@denied_net_prem, locale: :ph), class: "card-text text-start ms-5" %></td>
+        </tr>
+        </table>
+      </div>
+    </div>
   </div>
-  <div class="card-footer">
-    <%= content_tag :p, "Date Created: #{@quote.created_at.strftime("%d %b %Y")}", class: 'mb-0' %>
-    <%= content_tag :p, "Batch No.: #{@quote.quote_no}", class: 'fw-bold' %>
-  </div>
-</div>
 
 <table class="table table-stripped table-hover">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th>Name</th>
         <th>Age</th>
         <th>Effectivity</th>
@@ -25,6 +99,8 @@
         <th>Gross Premium</th>
         <th>Service Fee</th>
         <th>Net Premium</th>
+        <th>Status</th>
+        <th>Action</th>
 
       </tr>
     </thead>
@@ -40,6 +116,17 @@
         <td><%= number_to_currency(q.gross_prem, locale: :ph) %></td>
         <td><%= number_to_currency(q.service_fee, locale: :ph) %></td>
         <td><%= number_to_currency(q.net_prem, locale: :ph) %></td>
+        <td><%= q.status %></td>
+        <td class="text-center"> 
+          <% if q.status == "Approved" %>
+            <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
+          <% elsif q.status == "Denied" %>
+            <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
+          <% else %>
+            <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
+            <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </td>
       </tr>
     </tbody>
     <% end %>

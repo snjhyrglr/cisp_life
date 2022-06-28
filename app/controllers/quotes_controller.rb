@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: %i[ show edit update destroy ]
+  before_action :set_quote, only: %i[ edit update destroy ]
 
   # GET /quotes or /quotes.json
   def index
@@ -8,6 +8,13 @@ class QuotesController < ApplicationController
 
   # GET /quotes/1 or /quotes/1.json
   def show
+    @quote = Quote.includes(quote_items: [:member]).find(params[:id])
+    @approve_net_prem = QuoteItem.where(status: "Approved").sum(:net_prem)
+    @approve_coverage = QuoteItem.where(status: "Approved").sum(:coverage)
+    @denied_net_prem = QuoteItem.where(status: "Denied").sum(:net_prem)
+    @denied_coverage = QuoteItem.where(status: "Denied").sum(:coverage)
+    @pending_net_prem = QuoteItem.where(status: "Pending").sum(:net_prem)
+    @pending_coverage = QuoteItem.where(status: "Pending").sum(:coverage)
   end
 
   # GET /quotes/new

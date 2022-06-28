@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'quote_item/approve'
+  get 'quote_item/deny'
   resources :lppi_rates
   resources :cooperative_matrices
   resources :actuarial_matrix_lppis
   resources :rider_adbs
   resources :rider_add_tpds
-  resources :quotes
+  resources :quotes 
   resources :lppi_coverage_items
   resources :rates
   resources :lppi_coverages

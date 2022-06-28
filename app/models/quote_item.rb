@@ -4,6 +4,8 @@ class QuoteItem < ApplicationRecord
   belongs_to :rate, optional: true
   belongs_to :actuarial_matrix_lppi, optional: true
 
+  has_one :urd_lppi_process
+
   # before_save :compute_premium, :compute_term, :compute_age
 
 
@@ -74,6 +76,4 @@ class QuoteItem < ApplicationRecord
     end
     
   end
-  
-
 end

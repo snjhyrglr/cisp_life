@@ -7,6 +7,7 @@ class Quote < ApplicationRecord
   belongs_to :cooperative_branch
 
   has_many :quote_items
+  has_many :urd_lppi_processes
 
   before_save :set_default_attributes
 
@@ -36,8 +37,14 @@ class Quote < ApplicationRecord
         item.effectivity = spreadsheet.cell(row,'I')
         item.expiry = spreadsheet.cell(row,'J')
         item.coverage = spreadsheet.cell(row,'G')
+        item.status = "Pending"
         item.compute_premium
         item.save!
+        
+        # urd = self.urd_lppi_processes.find_or_initialize_by(quote_item_id: item.id)
+        # urd.status = "Pending"
+        # urd.save!
+
       end
         # self.quote_items << item
     when 2
