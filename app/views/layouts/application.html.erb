@@ -16,6 +16,7 @@
       <div class="container">
         <%= render 'layouts/flash' %>
         <%= yield %>
+        <%= turbo_frame_tag "remote_modal", target: "_top" %>
       </div>
     </main>
   </body>

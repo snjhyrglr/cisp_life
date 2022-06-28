@@ -1,4 +1,5 @@
 class Cooperative < ApplicationRecord
+	validates_presence_of :name, :address
 
 	def to_s
 		name 

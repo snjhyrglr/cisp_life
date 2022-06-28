@@ -1,6 +1,8 @@
 <h1>New cooperative</h1>
 
-<%= render "form", cooperative: @cooperative %>
+<%= render "remote_modal", title: "New Cooperative" do %>
+  <%= render "form", cooperative: @cooperative %>
+<% end %>
 
 <br>
 
