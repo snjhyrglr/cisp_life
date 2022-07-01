@@ -1,0 +1,11 @@
+<h1>Add Remarks</h1>
+
+<%= render "remote_modal", title: "New Remarks" do %>
+  <%= render "form", lppi_remark: @lppi_remark %>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Back to lppi remarks", lppi_remarks_path %>
+</div>

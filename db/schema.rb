@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_14_053442) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
   create_table "actuarial_matrix_lppis", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "min_age"
     t.integer "max_age"
@@ -183,6 +183,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_053442) do
     t.index ["rider_add_tpd_id"], name: "index_lppi_rates_on_rider_add_tpd_id"
   end
 
+  create_table "lppi_remarks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "quote_item_id", null: false
+    t.bigint "quote_id", null: false
+    t.string "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_id"], name: "index_lppi_remarks_on_quote_id"
+    t.index ["quote_item_id"], name: "index_lppi_remarks_on_quote_item_id"
+  end
+
   create_table "members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "lastName"
     t.string "firstName"
@@ -299,6 +309,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_053442) do
   add_foreign_key "lppi_coverages", "products"
   add_foreign_key "lppi_rates", "rider_adbs"
   add_foreign_key "lppi_rates", "rider_add_tpds"
+  add_foreign_key "lppi_remarks", "quote_items"
+  add_foreign_key "lppi_remarks", "quotes"
   add_foreign_key "members", "cooperative_branches"
   add_foreign_key "members", "cooperatives"
 end

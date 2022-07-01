@@ -20,6 +20,7 @@ class QuotesController < ApplicationController
   # GET /quotes/new
   def new
     @quote = Quote.new
+    @lppi_remarks = @quote.lppi_remarks.build
   end
 
   # GET /quotes/1/edit

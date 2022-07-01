@@ -7,7 +7,9 @@ class Quote < ApplicationRecord
   belongs_to :cooperative_branch
 
   has_many :quote_items
-  has_many :urd_lppi_processes
+  has_many :lppi_remarks, through: :quote_items
+
+  accepts_nested_attributes_for :lppi_remarks
 
   before_save :set_default_attributes
 
@@ -37,7 +39,7 @@ class Quote < ApplicationRecord
         item.effectivity = spreadsheet.cell(row,'I')
         item.expiry = spreadsheet.cell(row,'J')
         item.coverage = spreadsheet.cell(row,'G')
-        item.status = "Pending"
+        item.status = "For Underwrite"
         item.compute_premium
         item.save!
         

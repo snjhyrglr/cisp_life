@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quote_item: one
+  remarks: MyString
+
+two:
+  quote_item: two
+  remarks: MyString

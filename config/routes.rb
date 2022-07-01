@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :lppi_remarks
   get 'quote_item/approve'
   get 'quote_item/deny'
+  get 'quote_item/pending'
   resources :lppi_rates
   resources :cooperative_matrices
   resources :actuarial_matrix_lppis

@@ -4,7 +4,8 @@ class QuoteItem < ApplicationRecord
   belongs_to :rate, optional: true
   belongs_to :actuarial_matrix_lppi, optional: true
 
-  has_one :urd_lppi_process
+  has_many :lppi_remarks
+  accepts_nested_attributes_for :lppi_remarks, reject_if: :all_blank, allow_destroy: true
 
   # before_save :compute_premium, :compute_term, :compute_age
 

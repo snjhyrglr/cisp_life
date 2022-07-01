@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Lppi remarks</h1>
+
+<div id="lppi_remarks">
+  <% @lppi_remarks.each do |lppi_remark| %>
+    <%= render lppi_remark %>
+    <p>
+      <%= link_to "Show this lppi remark", lppi_remark %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New lppi remark", new_lppi_remark_path, data: { turbo_frame: "remote_modal" } %>

@@ -25,10 +25,7 @@
           <td class="text-end"><p>Net Premium: </p></td>
           <td><%= content_tag :p, number_to_currency(@quote.net_prem, locale: :ph), class: "text-start ms-5" %></td>
         </tr>
-        <tr>
-          <td class="text-end"><p>Approved Net Premium: </p></td>
-          <td><%= content_tag :p, number_to_currency(@approve_net_prem, locale: :ph), class: "text-start ms-5" %></td>
-        </tr>
+        
       </table>
     </div>
     <div class="card-footer">
@@ -122,9 +119,13 @@
             <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
           <% elsif q.status == "Denied" %>
             <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
+          <% elsif q.status == "Pending" %>
+            <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
+            <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
           <% else %>
             <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
             <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
+            <%= link_to "Pending", new_lppi_remark_path(q: @quote.id, qi: q.id), class: "btn btn-secondary btn-sm",data: { turbo_frame: "remote_modal" } %>
           <% end %>
         </td>
       </tr>
