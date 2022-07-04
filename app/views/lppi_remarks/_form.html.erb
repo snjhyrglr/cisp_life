@@ -1,11 +1,11 @@
 
-<%= simple_form_for @lppi_remark, url: lppi_remarks_path(q: params[:q], qi: params[:qi]), method: :post do |f| %>
+ <%= simple_form_for @lppi_remark, url: lppi_remarks_path(q: params[:q], qi: params[:qi]), method: :post do |f| %>
  <%#= simple_form_for @quote_item, url: lppi_remarks_path(q: params[:q]), method: :post do |f| %>
  <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-  <%= f.input :remarks %>
+   <%= f.input :remarks %>
     <%#= f.simple_fields_for :lppi_remarks do |r| %>
       <%#= f.association :quote_item %>
       <%#= r.input :remarks %>

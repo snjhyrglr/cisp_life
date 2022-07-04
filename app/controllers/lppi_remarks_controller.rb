@@ -79,7 +79,7 @@ class LppiRemarksController < ApplicationController
       params.require(:lppi_remark).permit(:quote_item_id, :quote_id, :remarks)
     end
 
-    # def quote_item_params
-    #   params.require(:quote_item).permit(:id, lppi_remarks_attributes: [:remarks])
-    # end
+    def quote_item_params
+      params.require(:quote_item).permit(:id, lppi_remarks_attributes: [:remarks])
+    end
 end

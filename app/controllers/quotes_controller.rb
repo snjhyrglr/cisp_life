@@ -3,12 +3,24 @@ class QuotesController < ApplicationController
 
   # GET /quotes or /quotes.json
   def index
-    @quotes = Quote.all
+      @quotes = Quote.all
   end
 
   # GET /quotes/1 or /quotes/1.json
   def show
-    @quote = Quote.includes(quote_items: [:member]).find(params[:id])
+    # ctr = params[:w]
+    puts params[:w]
+
+    if params[:w] == "Approve"
+      @quote = Quote.includes(quote_items: [:member]).where(quote_items: { status: "Approved" }).find(params[:id])
+    elsif params[:w] == "Pending"
+      @quote = Quote.includes(quote_items: [:member]).where(quote_items: { status: "Pending" }).find(params[:id])
+    elsif params[:w] == "Denied"
+      @quote = Quote.includes(quote_items: [:member]).where(quote_items: { status: "Denied" }).find(params[:id])
+    else 
+      @quote = Quote.includes(quote_items: [:member]).find(params[:id])
+    end
+
     @approve_net_prem = QuoteItem.where(status: "Approved").sum(:net_prem)
     @approve_coverage = QuoteItem.where(status: "Approved").sum(:coverage)
     @denied_net_prem = QuoteItem.where(status: "Denied").sum(:net_prem)
@@ -20,7 +32,7 @@ class QuotesController < ApplicationController
   # GET /quotes/new
   def new
     @quote = Quote.new
-    @lppi_remarks = @quote.lppi_remarks.build
+    # @lppi_remarks = @quote.lppi_remarks.build
   end
 
   # GET /quotes/1/edit

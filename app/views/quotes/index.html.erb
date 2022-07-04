@@ -15,6 +15,7 @@
         <th>Service Fee</th>
         <th>Net Premium</th>
         <th>Action</th>
+        <th>View</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +28,11 @@
         <td><%= number_to_currency(quote.gross_prem, locale: :ph) %></td>
         <td><%= number_to_currency(quote.service_fee, locale: :ph) %></td>
         <td><%= number_to_currency(quote.net_prem, locale: :ph) %></td>
-        <td><%= link_to "Show", quote_path(quote), class: "link link-success" %> | <%= link_to "Delete", quote_path(quote), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link link-danger"%> </td>
+        <td><%= link_to "Show", quote_path(quote, w: 0), class: "link link-success" %> | <%= link_to "Delete", quote_path(quote), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link link-danger"%></td>
+        <td><%= link_to "View Approve", quote_path(quote, w: "Approve"), class: "link link-info" %> | 
+        <%= link_to "View Pending", quote_path(quote, w: "Pending"), class: "link link-secondary" %> |
+        <%= link_to "View Denied", quote_path(quote, w: "Denied"), class: "link link-danger" %>
+        </td>
       </tr>
     </tbody>
     <% end %>
