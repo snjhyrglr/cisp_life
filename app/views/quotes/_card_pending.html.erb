@@ -1,0 +1,15 @@
+<div class="card border-secondary mb-3 text-center me-2 col-4" style="max-width: 18rem;">
+  <div class="card-header text-secondary">Pending</div>
+  <div class="card-body text-secondary">
+    <table class="ms-3">
+    <tr>
+      <td class="text-end">Coverage: </td>
+      <td><%= content_tag :p, number_to_currency(@pending_coverage, locale: :ph), class: "card-text text-start ms-5" %></td>
+    </tr>
+    <tr>
+      <td class="text-end">Premium: </td>
+      <td><%= content_tag :p, number_to_currency(@pending_net_prem, locale: :ph), class: "card-text text-start ms-5" %></td>
+    </tr>
+    </table>
+  </div>
+</div>

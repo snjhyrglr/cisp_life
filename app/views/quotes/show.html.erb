@@ -35,53 +35,19 @@
   </div>
 
   <div class="row justify-content-md-center">
-    <div class="card border-success mb-3 text-center me-2 col-4" style="max-width: 18rem;">
-      <div class="card-header text-success">Approved</div>
-      <div class="card-body text-success">
-        <table class="ms-3">
-        <tr>
-          <td class="text-end">Coverage: </td>
-          <td><%= content_tag :p, number_to_currency(@approve_coverage, locale: :ph), class: "card-text text-start ms-5" %></td>
-        </tr>
-        <tr>
-          <td class="text-end">Premium: </td>
-          <td><%= content_tag :p, number_to_currency(@approve_net_prem, locale: :ph), class: "card-text text-start ms-5" %></td>
-        </tr>
-        </table>
-      </div>
-    </div>
-    
-    <div class="card border-secondary mb-3 text-center me-2 col-4" style="max-width: 18rem;">
-      <div class="card-header text-secondary">Pending</div>
-      <div class="card-body text-secondary">
-        <table class="ms-3">
-        <tr>
-          <td class="text-end">Coverage: </td>
-          <td><%= content_tag :p, number_to_currency(@pending_coverage, locale: :ph), class: "card-text text-start ms-5" %></td>
-        </tr>
-        <tr>
-          <td class="text-end">Premium: </td>
-          <td><%= content_tag :p, number_to_currency(@pending_net_prem, locale: :ph), class: "card-text text-start ms-5" %></td>
-        </tr>
-        </table>
-      </div>
-    </div>
+    <% quote_item_status = params[:w] %>
 
-    <div class="card border-danger mb-3 text-center me-2 col-4" style="max-width: 18rem;">
-      <div class="card-header text-danger">Denied</div>
-      <div class="card-body text-danger">
-        <table class="ms-3">
-        <tr>
-          <td class="text-end">Coverage: </td>
-          <td><%= content_tag :p, number_to_currency(@denied_coverage, locale: :ph), class: "card-text text-start ms-5" %></td>
-        </tr>
-        <tr>
-          <td class="text-end">Premium: </td>
-          <td><%= content_tag :p, number_to_currency(@denied_net_prem, locale: :ph), class: "card-text text-start ms-5" %></td>
-        </tr>
-        </table>
-      </div>
-    </div>
+    <% if quote_item_status == "Approved" %>
+      <%= render 'quotes/card_approve' %>
+    <% elsif quote_item_status == "Pending" %>
+      <%= render 'quotes/card_pending' %>
+    <% elsif quote_item_status == "Denied" %>
+      <%= render 'quotes/card_denied' %>
+    <% else %>
+      <%= render 'quotes/card_approve' %>
+      <%= render 'quotes/card_denied' %>
+      <%= render 'quotes/card_pending' %>
+    <% end %>
   </div>
 
 <table class="table table-stripped table-hover">
@@ -102,34 +68,48 @@
       </tr>
     </thead>
     <tbody>
-    <% @quote.quote_items.each do |q| %>
+      <% if @quote_items.present? %>
+
+        <% @quote_items.each do |q| %>
+        <tr>
+          <td><%= q.member %></td>
+          <td><%= q.age %></td>
+          <td><%= q.effectivity %></td>
+          <td><%= q.expiry %></td>
+          <td><%= q.term %></td>
+          <td><%= number_to_currency(q.coverage, locale: :ph) %></td>
+          <td><%= number_to_currency(q.gross_prem, locale: :ph) %></td>
+          <td><%= number_to_currency(q.service_fee, locale: :ph) %></td>
+          <td><%= number_to_currency(q.net_prem, locale: :ph) %></td>
+          <td><%= q.status %></td>
+          <td class="text-center"> 
+            <% if q.status == "Approved" %>
+              <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
+            <% elsif q.status == "Denied" %>
+              <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
+            <% elsif q.status == "Pending" %>
+              <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
+              <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
+            <% else %>
+              <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
+              <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
+              <%= link_to "Pending", new_lppi_remark_path(q: @quote.id, qi: q.id), class: "btn btn-secondary btn-sm",data: { turbo_frame: "remote_modal" } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+
+    <% else %>
+
       <tr>
-        <td><%= q.member %></td>
-        <td><%= q.age %></td>
-        <td><%= q.effectivity %></td>
-        <td><%= q.expiry %></td>
-        <td><%= q.term %></td>
-        <td><%= number_to_currency(q.coverage, locale: :ph) %></td>
-        <td><%= number_to_currency(q.gross_prem, locale: :ph) %></td>
-        <td><%= number_to_currency(q.service_fee, locale: :ph) %></td>
-        <td><%= number_to_currency(q.net_prem, locale: :ph) %></td>
-        <td><%= q.status %></td>
-        <td class="text-center"> 
-          <% if q.status == "Approved" %>
-            <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
-          <% elsif q.status == "Denied" %>
-            <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
-          <% elsif q.status == "Pending" %>
-            <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
-            <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
-          <% else %>
-            <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
-            <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
-            <%= link_to "Pending", new_lppi_remark_path(q: @quote.id, qi: q.id), class: "btn btn-secondary btn-sm",data: { turbo_frame: "remote_modal" } %>
-          <% end %>
+        <td colspan=11>
+          <%= content_tag :h1, "No items with that status - #{params[:w]}", class: 'text-center' %>
         </td>
       </tr>
-    </tbody>
+
     <% end %>
+   </tbody>
   </table>
+
+  <%= link_to "Back to quotes", quotes_path, class: "btn btn-outline-secondary mt-2" %>
 

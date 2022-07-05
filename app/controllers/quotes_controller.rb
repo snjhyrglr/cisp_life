@@ -10,15 +10,12 @@ class QuotesController < ApplicationController
   def show
     # ctr = params[:w]
     puts params[:w]
+    @quote = Quote.find(params[:id])
 
-    if params[:w] == "Approve"
-      @quote = Quote.includes(quote_items: [:member]).where(quote_items: { status: "Approved" }).find(params[:id])
-    elsif params[:w] == "Pending"
-      @quote = Quote.includes(quote_items: [:member]).where(quote_items: { status: "Pending" }).find(params[:id])
-    elsif params[:w] == "Denied"
-      @quote = Quote.includes(quote_items: [:member]).where(quote_items: { status: "Denied" }).find(params[:id])
+    if params[:w] 
+      @quote_items = @quote.quote_items.includes(:member).where(status: params[:w])
     else 
-      @quote = Quote.includes(quote_items: [:member]).find(params[:id])
+      @quote_items = @quote.quote_items.includes(:member)
     end
 
     @approve_net_prem = QuoteItem.where(status: "Approved").sum(:net_prem)
