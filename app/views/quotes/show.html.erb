@@ -50,6 +50,10 @@
     <% end %>
   </div>
 
+<div class="digg_pagination mb-3 float-end">
+  <%= will_paginate @quote_items, :container => false %>
+</div>
+
 <table class="table table-stripped table-hover">
     <thead>
       <tr class="text-center">

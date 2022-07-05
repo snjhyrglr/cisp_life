@@ -13,9 +13,9 @@ class QuotesController < ApplicationController
     @quote = Quote.find(params[:id])
 
     if params[:w] 
-      @quote_items = @quote.quote_items.includes(:member).where(status: params[:w])
+      @quote_items = @quote.quote_items.includes(:member).where(status: params[:w]).paginate(page: params[:page], per_page: 5)
     else 
-      @quote_items = @quote.quote_items.includes(:member)
+      @quote_items = @quote.quote_items.includes(:member).paginate(page: params[:page], per_page: 5)
     end
 
     @approve_net_prem = QuoteItem.where(status: "Approved").sum(:net_prem)
