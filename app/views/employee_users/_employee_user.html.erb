@@ -1,6 +1,4 @@
 <div id="<%= dom_id employee_user %>">
-  <%= content_tag :h3, "User #{employee_user.id}: #{employee_user.username}"%>
-
   <div class="row">
 
     <div class="col-md-6">
@@ -29,30 +27,20 @@
         <div class="card-body">
           <p>
             <strong>Full name:</strong>
-            <%= employee_user.employee_profiles.full_name %>
+            <%= employee_user.employee_profile.full_name %>
           </p>
           <p>
             <strong>Birthday:</strong>
             <%= employee_user.employee_profile.birthdate %>
+          </p>
+          <p>
+             <strong>Division:</strong>
+            <%= employee_user.employee_profile.division.name %>
           </p>
         </div>
       </div>
     </div>
 
   </div>
-
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Username</th>
-        <th>Employee Number</th>
-        <th>Full name</th>
-        <th>Birthday</th>
-        <th></th>
-        <th>Username</th>
-        <th>Username</th>
-      </tr>
-    </thead>
-  </table>
 
 </div>

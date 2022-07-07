@@ -13,7 +13,8 @@ class EmployeeUsersController < ApplicationController
   # GET /employee_users/new
   def new
     @employee_user = EmployeeUser.new
-    @employe_profile = @employee_user.build_employee_profile
+    @employee_profile = @employee_user.build_employee_profile
+    # @employee_profile = @employee_user.build_employee_profile
   end
 
   # GET /employee_users/1/edit
@@ -22,7 +23,7 @@ class EmployeeUsersController < ApplicationController
     if @employee_user.employee_profile.present?
       @employee_profile = @employee_user.employee_profile
     else
-      @employe_profile = @employee_user.build_employee_profile  
+      @employee_profile = @employee_user.build_employee_profile  
     end
   end
 
@@ -73,8 +74,8 @@ class EmployeeUsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def employee_user_params
       params.require(:employee_user).permit(
-        :username, :password,
-        employee_profiles_attributes: [:employee_user_id, :department_id, :division_id, :employee_no, :last_name, :first_name, :middle_name, :suffix, :birthdate]
+        :username, :password, 
+        employee_profile_attributes: [:employee_user_id, :department_id, :division_id, :employee_no, :last_name, :first_name, :middle_name, :suffix, :birthdate]
         )
     end
 end

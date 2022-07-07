@@ -6,7 +6,7 @@
   <% @lppi_remarks.each do |lppi_remark| %>
     <%= render lppi_remark %>
     <p>
-      <%= link_to "Show this lppi remark", lppi_remark %>
+      <%= link_to "Show this lppi remark", lppi_remark, data: { turbo_frame: "remote_modal_show" } %>
     </p>
   <% end %>
 </div>

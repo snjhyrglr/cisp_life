@@ -3,12 +3,29 @@
 <h1>Employee users</h1>
 
 <div id="employee_users">
-  <% @employee_users.each do |employee_user| %>
-    <%= render employee_user %>
-    <p>
-      <%= link_to "Show this employee user", employee_user %>
-    </p>
-  <% end %>
+  <div class="float-end">
+    <%= link_to "New employee user", new_employee_user_path, class: "btn btn-outline-primary" %>
+  </div>
+  
+  <table class="table table-stripped table-hover">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Full name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employee_users.each do |emp| %>
+      <tr>
+        <td> <%= emp.username %> </td>
+        <td> <%= emp.employee_profile.full_name %> </td>
+        <td> <%= link_to "View", employee_user_path(emp), class: "link link-success" %> | <%= link_to "Edit", edit_employee_user_path(emp), class: "link link-primary" %> | <%= link_to "Delete", employee_user_path(emp), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link link-danger" %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
 
-<%= link_to "New employee user", new_employee_user_path %>
+

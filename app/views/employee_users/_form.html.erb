@@ -8,9 +8,22 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <%= content_tag :h5, "Credentials", class: "card-title"%> 
-          <%= f.input :username %>
-          <%= f.input :password %>
+          <%= content_tag :h5, "Details", class: "card-title"%> 
+          <%= f.simple_fields_for :employee_profile do |ep| %>
+          <%= ep.input :employee_no %>
+          <div data-controller="departments" class="row">
+            <%= ep.association :division, wrapper_html: { class: 'col-md-6'}, input_html: { class: "form-select", data: { action: "change->departments#change" } } %>
+            <%= ep.association :department, wrapper_html: { class: 'col-md-6'}, input_html: { class: "form-select", id: "department_id", data: { departments_target: "departmentSelect"} }%>
+          </div>
+          <div class="row" id="emp_det">
+            <%= ep.input :last_name, wrapper_html: { class: 'col-md-3'} %>
+            <%= ep.input :first_name, wrapper_html: { class: 'col-md-3'} %>
+            <%= ep.input :middle_name, wrapper_html: { class: 'col-md-3'} %>
+            <%= ep.input :suffix, wrapper_html: { class: 'col-md-3'} %>
+            <%#= link_to_add_nested(f, :employee_profiles, '#emp_det') %>
+          </div>
+          <%= ep.input :birthdate %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -18,22 +31,9 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <%= content_tag :h5, "Details", class: "card-title"%> 
-          <%= f.simple_fields_for :employee_profile do |ep| %>
-          <%= ep.input :employee_no %>
-          <div data-controller="departments" class="row">
-            <%= ep.association :division, wrapper_html: { class: 'col-md-6'}, input_html: { class: "form-select", data: { action: "change->departments#change" } } %>
-            <%= ep.association :department, wrapper_html: { class: 'col-md-6'}, input_html: { class: "form-select", id: "department_id", data: { departments_target: "departmentSelect"} } %>
-          </div>
-          <div class="row" id="emp_det">
-            <%= ep.input :last_name, wrapper_html: { class: 'col-md-3'} %>
-            <%= ep.input :first_name, wrapper_html: { class: 'col-md-3'} %>
-            <%= ep.input :middle_name, wrapper_html: { class: 'col-md-3'} %>
-            <%= ep.input :suffix, wrapper_html: { class: 'col-md-3'} %>
-            <%= link_to_add_nested(f, :employee_profiles, '#emp_det') %>
-          </div>
-          <%= ep.input :birthdate %>
-          <% end %>
+          <%= content_tag :h5, "Credentials", class: "card-title"%> 
+          <%= f.input :username %>
+          <%= f.input :password %>
         </div>
       </div>
     </div>

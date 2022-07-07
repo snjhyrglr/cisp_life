@@ -22,7 +22,11 @@
         <td><%= cooperative.name%></td>
         <td><%= cooperative.address%></td>
         <td><%= cooperative.abbreviation%></td>
-        <td><%= link_to 'Edit', edit_cooperative_path(cooperative), data: { turbo_frame: "remote_modal" }, class: "btn btn-outline-info" %> <%= link_to 'Delete', cooperative_path(cooperative), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %></td>
+        <td>
+          <%= link_to 'View', cooperative_path(cooperative), data: { turbo_frame: "remote_modal_show" }, class: "btn btn-outline-secondary" %>
+          <%= link_to 'Edit', edit_cooperative_path(cooperative), data: { turbo_frame: "remote_modal" }, class: "btn btn-outline-info" %> 
+          <%= link_to 'Delete', cooperative_path(cooperative), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+        </td>
       </tr>
     </tbody>
     <% end %>

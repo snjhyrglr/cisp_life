@@ -8,6 +8,12 @@ class LppiRemarksController < ApplicationController
 
   # GET /lppi_remarks/1 or /lppi_remarks/1.json
   def show
+    if params[:q]
+      @lppi_remark = LppiRemark.find_by(quote_id: params[:q], quote_item_id: params[:qi])
+    else
+      @lppi_remark = LppiRemark.find(params[:id])
+    end
+    
   end
 
   # GET /lppi_remarks/new

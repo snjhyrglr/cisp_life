@@ -2,13 +2,35 @@
 
 <h1>Departments</h1>
 
-<div id="departments">
-  <% @departments.each do |department| %>
-    <%= render department %>
-    <p>
-      <%= link_to "Show this department", department %>
-    </p>
-  <% end %>
+<div id="departments"></div>
+<div class="digg_pagination mb-3 float-end">
+    <%= will_paginate @departments, :container => false %>
 </div>
 
-<%= link_to "New department", new_department_path %>
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr>
+      <th>Division</th>
+      <th>Department Name</th>
+      <th>Abbreviation</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @departments.each do |dept| %>
+    <tr>
+      <td> <%= dept.division.name %> </td>
+      <td> <%= dept.name %> </td>
+      <td> <%= dept.abbreviation %> </td>
+      <td> <%= link_to "Edit", edit_department_path(dept), class: "link link-primary" %> | <%= link_to "Delete", department_path(dept), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link link-danger`" %> </td>
+    </tr>
+  </tbody>
+    <% end %>
+</table>
+
+<div class="text-end">
+  <%= link_to "New department", new_department_path, class: "btn btn-outline-primary" %>
+</div>
+</div>
+
+

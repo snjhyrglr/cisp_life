@@ -1,12 +1,6 @@
 <div id="<%= dom_id lppi_remark %>">
-  <p>
-    <strong>Quote item:</strong>
-    <%= lppi_remark.quote_item_id %>
-  </p>
 
-  <p>
-    <strong>Remarks:</strong>
-    <%= lppi_remark.remarks %>
-  </p>
+  <%= content_tag :h4, lppi_remark.quote_item.member, class: "card-title" %>
+  <%= content_tag :p, lppi_remark.remarks, class: "card-text" %>
 
 </div>

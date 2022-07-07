@@ -67,6 +67,7 @@
         <th>Service Fee</th>
         <th>Net Premium</th>
         <th>Status</th>
+        <th>Remarks</th>
         <th>Action</th>
 
       </tr>
@@ -98,6 +99,13 @@
               <%= link_to "Deny", quote_item_deny_path(q: @quote.id, qi: q.id), class: "btn btn-danger btn-sm" %> 
               <%= link_to "Approve", quote_item_approve_path(q: @quote.id,qi: q.id), class: "btn btn-primary btn-sm" %>
               <%= link_to "Pending", new_lppi_remark_path(q: @quote.id, qi: q.id), class: "btn btn-secondary btn-sm",data: { turbo_frame: "remote_modal" } %>
+            <% end %>
+          </td>
+          <td>
+            <% if q.status == "Pending" %>
+              <%= link_to "View Remarks", lppi_remark_path(q: @quote.id, qi: q.id), data: { turbo_frame: "remote_modal_show" } %>
+            <% else %>
+              <p>-</p>
             <% end %>
           </td>
         </tr>

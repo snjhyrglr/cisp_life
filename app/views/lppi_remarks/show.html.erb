@@ -1,9 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @lppi_remark %>
+<%= render "remote_modal_show", title: "View Remarks" do %>
+  <%= render @lppi_remark %>
+<% end %>
 
 <div>
-  <%= link_to "Edit this lppi remark", edit_lppi_remark_path(@lppi_remark) %> |
   <%= link_to "Back to lppi remarks", lppi_remarks_path %>
 
   <%= button_to "Destroy this lppi remark", @lppi_remark, method: :delete %>

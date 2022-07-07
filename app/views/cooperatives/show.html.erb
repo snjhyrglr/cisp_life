@@ -1,6 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @cooperative %>
+<%= render "remote_modal_show", title: "View Cooperative" do %>
+  <%= render @cooperative %>
+<% end %>
+
 
 <div>
   <%= link_to "Back to cooperatives", cooperatives_path %>
