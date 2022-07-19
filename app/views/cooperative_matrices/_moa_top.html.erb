@@ -1,0 +1,39 @@
+<h2 class="text-center mt-3 mb-3"><b>M</b>emorandum <b>O</b>f <b>A</b>greement</h2>
+<p class="ms-3 fw-bold fs-5">KNOW ALL BY MEN BY THESE PRESENTS:</p>
+
+
+<p class="fs-6 ms-3 me-3" style="text-align: justify;">
+  This AGREEMENT made and executed this <u><%= cooperative_matrix.created_at.day %></u> day of <u><%= cooperative_matrix.created_at.strftime("%B").capitalize %></u>, <%= Time.zone.now.year %> in Quezon City by and between:
+</p>
+
+<div class="mx-auto" style="max-width: 45rem">
+  <p class="ms-3 me-3 mb-3" style="text-align: justify;">
+    The <b>1 COOPERATIVE INSURANCE SYSTEM OF THE PHILIPPINES LIFE AND GENERAL INSURANCE (1 CISP)</b>, a cooperative insurance organized and existing under the laws of the Philippines, with business address located at No. 80 Malakas St., Barangay Pinyahan, Diliman, Quezon City represented in this act by its President, <b>MR. ROY S. MICLAT</b> and Vice President for Operations (Life Division), <b>MS. JACKELYN P. BALLENA</b> duly authorized, and hereinafter referred to as <b>"1 CISP"</b>;
+  </p>
+
+  <%= content_tag :p, "- and -", class: "text-center" %>
+
+  <p class="ms-3 me-3 mb-3" style="text-align: justify;">
+    The <b><%= cooperative_matrix.cooperative.name.upcase %></b>, a cooperative organized and existing under the laws of the Philippines, with office located at <u><%= cooperative_matrix.cooperative.address %></u>, represented in this act by its <%= cooperative_matrix.incharge_position %>, <b><%= cooperative_matrix.cooperative_incharge.upcase %></b> duly authorized, and hereinafter referred to as the <b>"COOPERATIVE"</b>;
+  </p>
+</div>
+
+<%= content_tag :p, "- WITNESSETH -", class: "text-center" %>
+
+<br>
+  <p class="ms-3 me-3 mb-3" style="text-align: justify;">
+    <b>WHEREAS,</b> the COOPERATIVE provides loan assistance to its members for their livelihood and/or additional income generating projects and desires to insure the lives of its members to protect the interest of the organization and the members as well through secured loan payment in the event of the member's untimely demise.
+  </p>
+
+  <p class="ms-3 me-3 mb-3" style="text-align: justify;">
+    <b>WHEREAS,</b> 1 CISP, in line with its social insurance program and attuned to the government's policies and programs on cooperative development, is capable and willing to provide the desired protection in terms of Insurance cover in favor of the COOPERATIVE and its members as well; 
+  </p>
+
+  <p class="ms-3 me-3 mb-3" style="text-align: justify;">
+    <b>WHEREAS,</b> the COOPERATIVE agrees to enroll its active member-borrowers with the 1 CISP's <b>LOAN PAYMENT PROTECTION INSURANCE (LPPI)</b>, a Group Credit Life Insurance plan as stipulated in the provision of this Memorandum of Agreement;
+  </p>
+
+  <p class="ms-3 me-3 mb-3" style="text-align: justify;">
+    <b>NOW, THEREFORE, </b> for and in consideration of the foregoing premised and of the mutual covenants and stipulations hereinafter set forth, the parties hereto agree on the following terms and conditions:
+  </p>
+

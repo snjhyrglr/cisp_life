@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
-  create_table "actuarial_matrix_lppis", charset: "utf8mb4", force: :cascade do |t|
+  create_table "actuarial_matrix_lppis", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "min_age"
     t.integer "max_age"
     t.decimal "min_annual_prem_rate", precision: 10, scale: 2
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["rider_add_tpd_id"], name: "index_actuarial_matrix_lppis_on_rider_add_tpd_id"
   end
 
-  create_table "batches", charset: "utf8mb4", force: :cascade do |t|
+  create_table "batches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.string "name"
     t.string "description"
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["product_id"], name: "index_batches_on_product_id"
   end
 
-  create_table "beneficiaries", charset: "utf8mb4", force: :cascade do |t|
+  create_table "beneficiaries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "member_id", null: false
     t.string "name"
     t.integer "age"
@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["member_id"], name: "index_beneficiaries_on_member_id"
   end
 
-  create_table "cooperative_branches", charset: "utf8mb4", force: :cascade do |t|
+  create_table "cooperative_branches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "cooperative_id", null: false
     t.string "name"
     t.string "address"
@@ -54,11 +54,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["cooperative_id"], name: "index_cooperative_branches_on_cooperative_id"
   end
 
-  create_table "cooperative_matrices", charset: "utf8mb4", force: :cascade do |t|
+  create_table "cooperative_matrices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "cooperative_id", null: false
     t.bigint "lppi_rate_id", null: false
     t.string "cooperative_incharge"
     t.string "incharge_position"
+    t.integer "entry_age_min"
+    t.integer "entry_age_max"
+    t.integer "exit_age"
+    t.decimal "NML", precision: 15, scale: 2
+    t.decimal "NEL", precision: 15, scale: 2
+    t.integer "min_borrowers"
     t.decimal "premium_rate", precision: 5, scale: 2
     t.boolean "add_tpd_enable"
     t.decimal "add_tpd_rate", precision: 5, scale: 2
@@ -72,7 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["lppi_rate_id"], name: "index_cooperative_matrices_on_lppi_rate_id"
   end
 
-  create_table "cooperatives", charset: "utf8mb4", force: :cascade do |t|
+  create_table "cooperatives", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "abbreviation"
@@ -80,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "departments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "departments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "division_id", null: false
     t.string "name"
     t.string "abbreviation"
@@ -89,13 +95,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["division_id"], name: "index_departments_on_division_id"
   end
 
-  create_table "divisions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "divisions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "employee_profiles", charset: "utf8mb4", force: :cascade do |t|
+  create_table "employee_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "employee_user_id", null: false
     t.bigint "department_id", null: false
     t.bigint "division_id", null: false
@@ -113,14 +119,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["employee_user_id"], name: "index_employee_profiles_on_employee_user_id"
   end
 
-  create_table "employee_users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "employee_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username"
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lppi_coverage_items", charset: "utf8mb4", force: :cascade do |t|
+  create_table "lppi_coverage_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "batch_id", null: false
     t.bigint "member_id", null: false
     t.date "effectivity"
@@ -140,7 +146,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["rate_id"], name: "index_lppi_coverage_items_on_rate_id"
   end
 
-  create_table "lppi_coverages", charset: "utf8mb4", force: :cascade do |t|
+  create_table "lppi_coverages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "batch_id", null: false
     t.bigint "cooperative_id", null: false
     t.bigint "cooperative_branch_id", null: false
@@ -163,7 +169,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["product_id"], name: "index_lppi_coverages_on_product_id"
   end
 
-  create_table "lppi_rates", charset: "utf8mb4", force: :cascade do |t|
+  create_table "lppi_rates", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "min_age"
     t.integer "max_age"
     t.decimal "min_coverage", precision: 15, scale: 2
@@ -183,7 +189,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["rider_add_tpd_id"], name: "index_lppi_rates_on_rider_add_tpd_id"
   end
 
-  create_table "lppi_remarks", charset: "utf8mb4", force: :cascade do |t|
+  create_table "lppi_remarks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "quote_item_id", null: false
     t.bigint "quote_id", null: false
     t.string "remarks"
@@ -193,7 +199,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["quote_item_id"], name: "index_lppi_remarks_on_quote_item_id"
   end
 
-  create_table "members", charset: "utf8mb4", force: :cascade do |t|
+  create_table "members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "lastName"
     t.string "firstName"
     t.string "middleName"
@@ -209,21 +215,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["cooperative_id"], name: "index_members_on_cooperative_id"
   end
 
-  create_table "posts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", charset: "utf8mb4", force: :cascade do |t|
+  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "quote_items", charset: "utf8mb4", force: :cascade do |t|
+  create_table "quote_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "quote_id"
     t.bigint "member_id"
     t.integer "age"
@@ -244,7 +250,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["rate_id"], name: "index_quote_items_on_rate_id"
   end
 
-  create_table "quotes", charset: "utf8mb4", force: :cascade do |t|
+  create_table "quotes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "product_id"
     t.integer "quote_year"
     t.string "issuing_office"
@@ -263,7 +269,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["product_id"], name: "index_quotes_on_product_id"
   end
 
-  create_table "rates", charset: "utf8mb4", force: :cascade do |t|
+  create_table "rates", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "min_age"
     t.integer "max_age"
     t.decimal "min_coverage", precision: 10, scale: 2
@@ -276,33 +282,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_003529) do
     t.index ["product_id"], name: "index_rates_on_product_id"
   end
 
-  create_table "rider_adbs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "rider_adbs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.decimal "rate", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "rider_add_tpds", charset: "utf8mb4", force: :cascade do |t|
+  create_table "rider_add_tpds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.decimal "rate", precision: 10, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tbl_rates", id: :integer, charset: "utf8mb4", force: :cascade do |t|
-    t.integer "min_age", null: false
-    t.integer "max_age", null: false
-    t.decimal "min_annual_prem_rate", precision: 10, scale: 2, null: false
-    t.decimal "max_annual_prem_rate", precision: 10, scale: 2, null: false
-    t.decimal "min_monthly_prem_rate", precision: 10, scale: 2, null: false
-    t.decimal "max_monthly_prem_rate", precision: 10, scale: 2, null: false
-    t.decimal "maximum_allowed_commission", precision: 10, scale: 2, null: false
-    t.decimal "annual_prem_rate_add_tpd_rider", precision: 10, scale: 2, null: false
-    t.decimal "annual_prem_rate_adb_rider", precision: 10, scale: 2, null: false
-  end
-
-  create_table "test_posts", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

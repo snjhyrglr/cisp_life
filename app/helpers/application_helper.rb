@@ -21,4 +21,7 @@ module ApplicationHelper
 		end
 	end
 
+  def to_currency(amount)
+    number_to_currency(amount, locale: :ph)
+  end
 end

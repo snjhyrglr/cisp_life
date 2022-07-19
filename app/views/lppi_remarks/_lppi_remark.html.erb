@@ -1,6 +1,12 @@
 <div id="<%= dom_id lppi_remark %>">
 
-  <%= content_tag :h4, lppi_remark.quote_item.member, class: "card-title" %>
-  <%= content_tag :p, lppi_remark.remarks, class: "card-text" %>
+  <div class="row mx-auto">
+    <div class="col">
+      <%= content_tag :p, "Remarks: "%>
+    </div>
+    <div class="col">
+      <%= content_tag :p, lppi_remark.remarks, class: "card-text" %>
+    </div>
+  </div>
 
 </div>

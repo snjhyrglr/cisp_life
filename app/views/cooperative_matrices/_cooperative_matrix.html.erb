@@ -1,40 +1,68 @@
 <div id="<%= dom_id cooperative_matrix %>">
 
-  <div class="card col-md-6 mx-auto mb-3">
-    <div class="card-body">
-      <%= content_tag :h4, cooperative_matrix.cooperative, class: "card-title text-center" %>
-      <%= content_tag :p, cooperative_matrix.cooperative.address, class: "card-subtitle text-center"  %>
-      <%= content_tag :p, "#{cooperative_matrix.cooperative_incharge} - #{cooperative_matrix.incharge_position}", class: "card-subtitle mb-2 text-muted text-center mt-1" %>
+  <%#= render "cooperative_matrices/table_matrix", cooperative_matrix: @cooperative_matrix %>
 
-      <table class="mx-auto mt-3">
-      <tr>
-        <td class="text-end"><p>Annual Premium Rate:</p></td>
-        <td><%= content_tag :p, cooperative_matrix.premium_rate, class: "ms-5" %></td>
-      </tr>
-      <tr>
-        <td class="text-end"><p>ADD/TPD Rider:</p></td>
-        <td><%= content_tag :p, cooperative_matrix.add_tpd_rate, class: "ms-5" %></td>
-      </tr>
-      <tr>
-        <td class="text-end"><p>ADB Rider:</p></td>
-        <td><%= content_tag :p, cooperative_matrix.adb_rate, class: "ms-5" %></td>
-      </tr>
-      <tr>
-        <td class="text-end"><p>Total Annual Premium Rate:</p></td>
-        <td><%= content_tag :p, cooperative_matrix.total_premium_rate, class: "ms-5" %></td>
-      </tr>
-      <tr>
-        <td class="text-end"><p>Coop Service Fee (%):</p></td>
-        <td><%= content_tag :p, number_to_percentage(cooperative_matrix.coop_service_fee * 100, precision: 0), class: "ms-5" %></td>
-      </tr>
-      </table>
+  <div class="card mx-auto border-info" style="max-width: 50rem;font-family: 'Times New Roman', Times, serif;">
+  
+    <%= render "cooperative_matrices/moa_top", cooperative_matrix: @cooperative_matrix %>
+
+    <%= content_tag :p, "A. COMMITMENT AND UNDERTAING OF COOPERATIVE", class: "fw-bold ms-3 mt-3" %>
+
+      <%= render "cooperative_matrices/moa_def_terms", cooperative_matrix: @cooperative_matrix %>
+
+    <%= content_tag :p, "B. UNDERTAKING AND COMMITMENT OF 1 CISP", class: "fw-bold ms-3 mt-1" %>
+
+      <%= render "cooperative_matrices/moa_undertaking", cooperative_matrix: @cooperative_matrix %>
+
+    <%= render "cooperative_matrices/moa_parts_cont" %>
+
+    
+    <div class="ms-3 mt-1 me-3" style="text-align: justify;">
+      <p class="ms-3 me-3"><b>IN WITNESS WHEREOF</b>, the parties hereto have set their hands on the date and place above-stated.</p>
     </div>
 
-    <div class="text-end mb-2 m">
-      <%= link_to "Edit", edit_cooperative_matrix_path(@cooperative_matrix), class: "btn btn-outline-primary" %>
-      <%= link_to "Back", cooperative_matrices_path, class: "btn btn-outline-success" %>
-  </div>
+
+    
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="col ms-4 mt-1 me-3">
+          <p class="ms-3 me-3 fw-bold" style="max-width: 20rem; max-height: 20rem;">1 COOPERATIVE INSURANCE SYSTEM OF THE PHILLIPINES LIFE AND GENERAL INSURANCE </p>
+        </div>
+        <div class="w-100"></div>
+        <div class="col ms-4 mt-1 me-3">
+          <p class="ms-3 me-3">By:</p>
+        </div>
+        <div class="w-100"></div>
+        <div class="col ms-4 mt-1 me-3">
+          <p class="ms-3 me3"><b>ROY S. MICLAT</b></p>
+          <p class="ms-3 me3">President</p>
+        </div>
+        <div class="w-100"></div>
+        <div class="col ms-4 mt-1 me-3">
+          <p class="ms-3 me3"><b>JACKELYN P. BALLENA</b></p>
+          <p class="ms-3 me3">Vice President for Operations (Life Division)</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="col ms-4 mt-1 me-3">
+          <%= content_tag :p, cooperative_matrix.cooperative.name.upcase, class: "ms-3 me-3 mb-5 fw-bold" %>
+        </div>
+        <div class="w-100"></div>
+        <div class="col ms-4 mt-1 me-3">
+          <p class="ms-3 me-3">By:</p>
+        </div>
+        <div class="w-100"></div>
+        <div class="col ms-4 mt-1 me-3">
+          <p class="ms-3 me3"><b> <%= cooperative_matrix.cooperative_incharge.upcase %> </b></p>
+          <p class="ms-3 me3"><%= cooperative_matrix.incharge_position %></p>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  
 </div>
+
+

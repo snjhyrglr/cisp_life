@@ -25,6 +25,7 @@
     </div>
   </div>
 
+  <%= content_tag :h3, 'Beneficiary', class: "mt-2" %>
   <div id="beneficiaries">
     <%= f.simple_fields_for :beneficiaries do |ben_f| %>
       <%= render 'beneficiary_fields', form: ben_f %>

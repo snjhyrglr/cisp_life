@@ -28,7 +28,10 @@
         <td><%= cooperative_matrix.adb_rate %></td>
         <td><%= cooperative_matrix.total_premium_rate %></td>
         <td><%= cooperative_matrix.coop_service_fee %></td>
-        <td> <%= link_to "", edit_cooperative_matrix_path(cooperative_matrix), class: "glyphicon glyphicon-search" %> | <%= link_to "Delete", cooperative_matrix_path(cooperative_matrix), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %> </td>
+        <td>
+        <%= link_to "View", cooperative_matrix_path(cooperative_matrix), class: "link-info" %> |
+        <%= link_to "Edit", edit_cooperative_matrix_path(cooperative_matrix), class: "link-success" %> | 
+        <%= link_to "Delete", cooperative_matrix_path(cooperative_matrix), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "link-danger" %> </td>
       </tr>
     </tbody>
     <% end %>

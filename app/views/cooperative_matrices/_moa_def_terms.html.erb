@@ -1,0 +1,266 @@
+<div class="ms-5 mb-3">
+  <p><b>1.<u class="ms-3">Definition of Terms</u></b></p>
+
+  <div class="ms-4 me-3">
+    <p style="text-align: justify;">
+      <b>Applicant</b> <i> - the "Borrower" to be insured under this. plan</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>New Applicant</b> <i> - the "Borrower" to be insured who did not yet surpass the one-year contestability period.</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>Renewal Applicant</b> <i> - the "Borrower" to be insured who already surpassed the one-year contestability period.</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>Reinstatement Applicant</b> <i> - the "Borrower" to be insured whose last coverage has lapsed for more than 24 months prior to reinstatement date of coverage.</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>No Evidence Limit (NEL)</b> <i> - the maximum amount of coverage per individual per year wherein evidence of insurability is waived except "Summary Report".</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>Non-Medical Limit (NML)</b> <i> - the maximum amount of coverage per individual per year wherein medical requirement is waived except "Summary Report" and "Application Form" if NEW Applicant.</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>Standard Risk</b> <i> - a risk class of proposed insureds whose anticipated mortality rates are average and thus, a standard premium rate is imposed.</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>Substandard Risk</b> <i> - a risk class of proposed insureds whose anticipated mortality rates are higher than average, but who are still considered to be insurable and this, a substandard or higher premium rate is imposed.</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>Medical Information Database (MID)</b> <i> - this is where life insurance companies, as part of due diligence in their risk assessment process, without need of obtaining the data subjects concerned, shall share among themselves all medical information gathered from declarations made on company forms; those secured from medical examinations conducted on the insured applicant or policyholder; or those sourced from records of medical service providers from which the insured applicant or policyholder may have sought care. Such information gathered shall be compiled in a database, hereinafter referred to as the Medical Information Database (MID). All life insurance companies are mandated to upload to the MID all pertinent medical information of all their existing policyholders and insured.</i>
+    </p>
+    <p style="text-align: justify;">
+      <b>Preexisting condition</b> <i> - Pre-existing condition, is any medical condition, illness, injury or any related condition(s) which signs and symptoms were present and any cautios individual would have sought consult with a medical professional in the last twelve (12) months prior to insurance application. This includes terminal illness, dreaded and chronic diseases.</i>
+    </p>
+  </div>
+
+  <p class="me-3" style="text-align: justify;">
+  <b>2.<u class="ms-3">Enrollment in the plan.</u></b> To protect the interest of the COOPERATIVE and its individual borrowers, as well, and assure the repayment of the loan obligation of the borrowers in the event of untimely death and to relive the heirs/co-makers of the burden of inheriting the loan obligation, the COOPERATIVE shall insure with 1 CISP the loan obligations of its eligible borrowers.
+  </p>
+
+  <p class="me-3" style="text-align: justify;">
+  <b>3.<u class="ms-3">Participation Requirements.</u></b> The COOPERATIVE shall enroll at least a minimum of <b><%= cooperative_matrix.min_borrowers.humanize %> (<%= cooperative_matrix.min_borrowers %>) borrowers</b> as initial enrollees in order to implement the plan. The COOPERATIVE shall exclusively enroll 100% of its eligible borrowers to 1 CISP's Loan Payment Protection Insurance.
+  </p>
+
+  <p class="me-3" style="text-align: justify;">
+  <b>4.<u class="ms-3">Underwriting Requirements.</u></b> The COOPERATIVE shall see to it that all NEW & REINSTATEMENT APPLICANTS shall accomplish the "insurance application form" completely and accurately including the health declaration indicated thereon and comply with the requirements set forth hereof.
+  </p>
+  
+  <p class="me-3" style="text-align: justify;">
+   The coverage of all "new" & "reinstatement" applicants without "application form", "health declaration", and "date of birth" shall be automatically postponed by the Underwriting Department of 1 CISP and consequently, the premium shall be refunded within <b>fifteen (15) calendar days</b> from the date of notice.
+  </p>
+
+  <p class="me-3" style="text-align: justify;">
+   On the other hand, the COOPERATIVE shall be given <b>thirty one (31) calendar days</b> to submit the medical results and financial evidences of the applicant who have a coverage exceeding the NON-MEDICAL LIMIT stipulated in this agreement. In case the medical and financial requirements are not submitted after the due date, the total coverage of the applicant shall be reduced to NON-MEDICAL LIMIT <b>(<%= to_currency(cooperative_matrix.NML) %>)</b> subject to extra premium charge if his or her health condition as per declaration or <b>Medical Information Database (MID)</b> so warrants.
+  </p>
+
+  <div class="ms-5 me-3" style="text-align: justify;">
+    <p><b>4.1 Eligibility Requirements</b></p>
+    <table>
+      <tr>
+        <pre class="ms-5">Entry Age:         <b><%= cooperative_matrix.entry_age_min %> - <%= cooperative_matrix.entry_age_max %></b> years old </pre>
+      </tr>
+      <tr>
+        <pre class="ms-5">Exit Age:          <b><%= cooperative_matrix.exit_age %></b> years old </pre>
+      </tr>
+    </table>
+              
+
+    <div class="ms-3" style="text-align: justify;">
+      <p><b>The proposed insured</b></p>
+      <p>
+        1. Shall be a natural person and a borrower of the cooperative and residing in the Philippines at the time of commencement of coverage;
+      </p>
+      <p>
+        2. Shall be in good health and physically able to perform the usual duties of their respective occupation at the commencement date of coverage; and
+      </p>
+      <p>
+        3. Shall be able to perform the following Activities of Daily Living (ADLs), namely:
+          <ol type="a">
+            <li>Eating/feeding;</li>
+            <li>Toileting;</li>
+            <li>Mobility/transferring;</li>
+            <li>Bathing; and</li>
+            <li>Dressing.</li>
+          </ol>
+      </p>
+    </div>
+
+    <p><b>4.2 Summary Report.</b> The Cooperative shall submit a Summary Report of all borrowers to be insured duly signed by the General Manager of the Cooperative. The Cooperative shall forward the softcopy of the Summary Report to  1 CISP's Underwriting for database purposes. The Cooperative shall email it to <a href="#">cispunderwriting@gmail.com</a></p>
+
+    <p><b>4.3 LPPI Application Form.</b> The "NEW" and "REINSTATEMENT" APPLICANT is required to accomplish the LPPI Application form if his or her <b>total active loan/s</b> is more than <b><%= to_currency(cooperative_matrix.NEL) %></b>. The applicant shall complete his or her basic personal information such as <i>full name, date of birth, occupation, place of work, height, weight, name of beneficiary/ies and answers in health declaration</i> in the application form.</p>
+    <p>All the questions in the application shall be answered fully and accurately in order to avoid postponement. All answers in the health declaration shall be subjected to evaluation of 1 CISP. 1 CISP reserves the right to require additional medical questionnaire or medical examination if the applicant declared any statement in relation to his or her medical condition. 1 CISP also reserves the right to "deny" coverage or impose an extra premium if an applicant is found to be a substantial risk to 1 CISP. The application form shall be signed by the borrower with date. Signing by proxy or attorney-in-fact is not acceptable. (Refer to the attached sample form).</p>
+
+    <p><b>4.4 Discrepancies.</b> In case there are discrepancies in the details of insured borrower in the <i>Summary Report</i> and <i>Application Form</i> such as: <i>name of borrower, date of birth, effective date, expiry date, amount of loan, premium, and et.,</i> 1 CISP will deem the information in the <i>Application Form as</i> "true and correct".</p>
+
+    <p><b>4.5 Premium.</b> Premium charges are based on the agreed rates between 1 CISP and the COOPERATIVE. A uniform premium shall be charged to applicants who are classified as STANDARD RISK by the Underwriting Department of 1 CISP. ALl applicants who are classified SUBSTANDARD RISK shall be subject to extra premium charge based on its risk profile.</p>
+
+    <p><b>The Premium of borrowers to be covered who are <%= cooperative_matrix.entry_age_min %> to <%= cooperative_matrix.entry_age_max %> years old shall be <%= cooperative_matrix.premium_rate/12 %>/thousand per month or  <%= cooperative_matrix.premium_rate %>/thousand per year</b>.</p>
+
+    <p>The COOPERATIVE shall collect and/or deduct the premium as determined by the amount of the loan and the period of payment in accordance with the agreed premium rate.</p>
+    
+    <p>For the purpose of premium computation, <b>a fraction of a month is considered as one (1) full month</b>.</p>
+    
+    <p>The insufficiency of the remitted payment for premiums shall proportionately reduce the insurance coverage automatically to the maximum amount that he actually remitted payment can buy, until the deficiency of premium payment is made up (within 15 days from receipt of notice). Overpaid premium shall be refunded less retained coop's service incentive.</p>
+
+    <p><b>4.6 Non-medical Limits (NML) and Medical Examination Requirement.</b> The non-medical limit and Medical Examination requirement depends on the aggregate amount of active loans of the applicant.</p>
+
+    <p>The following are the schedule of the said limits.</p>
+    <table class="mx-auto table table-striped table-hover">
+      <thead class="text-center">
+        <th>Sum Insured</th>
+        <th>Requirements</th>
+        <th>Remarks</th>
+      </thead>
+      <tbody class="text-center">
+        <tr>
+          <td> <%= to_currency(cooperative_matrix.NEL) %> and less</td>
+          <td> Summary Report</td>
+          <td><b>NO EVIDENCE LIMIT (NEL)</b></td>
+        </tr>
+        <tr>
+          <td><%= to_currency(cooperative_matrix.NEL + 1) %> - <%= to_currency(cooperative_matrix.NML) %></td>
+          <td> Application Form</td>
+          <td><b>NON-MEDICAL LIMIT (NML)</b></td>
+        </tr>
+        <tr>
+          <td><%= to_currency(cooperative_matrix.NML + 1) %> - and above</td>
+          <td> Application Form and medical requirements (See schedule of medical requirements)</td>
+          <td><b>For Medical Examination</b></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-center"><b>Schedule of Medical Requirements</b></p>
+    
+    <table class="mx-auto table table-striped table-hover">
+      <thead class="text-center">
+        <tr>
+          <th rowspan=2>Sum Insured</th>
+          <th colspan=3>Age</th>
+        </tr>
+        <tr>
+          <th>18-55</th>
+          <th>56-60</th>
+          <th>61-65</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr>
+          <td>5,000,001 to 10,000,000</td>
+          <td>FME, MUR, CXR, ECG, BEX (B)</td>
+          <td>FME, MUR, CXR, ECG, BEX (B)</td>
+          <td>FME, MUR, CXR, ECG, BEX (B)</td>
+        </tr>
+        <tr>
+          <td>10,000,001 to 20,000,000</td>
+          <td>FME, MUR, CXR, ECG, BEX (C)</td>
+          <td>FME, MUR, CXR, ECG, BEX (C)</td>
+          <td>FME, MUR, CXR, ECG, BEX (C)</td>
+        </tr>
+        <tr>
+          <td>20,000,001 & above</td>
+          <td>FME, MUR, CXR, ECG, BEX (C), TMT</td>
+          <td>FME, MUR, CXR, ECG, BEX (C), TMT</td>
+          <td>FME, MUR, CXR, ECG, BEX (C), TMT</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ms-3 me-2" style="text-align: justify;">
+      <p><b>Notes:</b></p>
+      <ol type="1">
+        <li>
+          <p>Requirements are based on aggregate amount of in-force insurance on any one's life.</p>
+        </li>
+        <li>
+          <p>Terminology for routine medical requirements:</p>
+          <ol type="a">
+            <li><p></p>FME - Full Medical Examination (FME form shall be accomplished and duly signed by the examining doctor and signed by the applicant for insurance)</p></li>
+            <li><p>MUR - Chemical and Microscopic Urinalysis</p></li>
+            <li><p>CXR - Chest X-Ray result (with film and interpretation)</p></li>
+            <li><p>ECG - Electrocardiogram (with complete tracing and interpretation)</p></li>
+            <li>
+              <p>BEX - Blood Examination</p>
+              <p>BEX (A)- Fasting Blood Sugar, BUN, Creatinine, Cholesterol, Uric Acid, CBC</p>
+              <p>BEX (B)- Fasting Blood Sugar, BUN, Creatinine, Cholesterol, Uric Acid, CBC, SGOT, SGPT, HIV, Triglycerides</p>
+              <p>BEX (C)- Fasting Blood Sugar, BUN, Creatinine, Cholesterol, Uric Acid, CBC, SGOT, SGPT, HIV, Triglycerides, HBSAG, Anti-HBS</p>
+            </li>
+            <li><p>TMT - Treadmill Test</p></li>
+          </ol>
+        </li>
+        <li>
+          <p>Blood Exam - 1 & 2 has an <b>8 to 12 hours</b> fasting requirement. <b>(NO Fasting No Exam)</b></p>
+        </li>
+        <li>
+          <p>All medical examination results have a validity period of <b>six (6) months</b>. If a proposed insured fails to finish or submit all medical documents within the <b>six (6) months</b> period, he will be required to submit new medical results.</p>
+        </li>
+        <li>
+          <p>Any amount in excess of the non-medical limit will not be covered by insurance unless all medical requirements are met.</p>
+        </li>
+        <li>
+          <p>Latest Financial Statement, current ITR & Investigation Report shall automatically be required to applications with more than 10 million of sum insured.</p>
+        </li>
+      </ol>
+
+      <p><b>1 CISP reserves the right to require additional medical or laboratory tests should the declaration in the Applicant's Health Statement so warrants. No coverage shall take effect for those required to undergo medical examination/s unless there is a written approval of coverage from 1 CISP.</b></p>
+    </div>
+
+    <p><b>4.7 Schedule of Premium Remittance and Submission of Summary Report and Application Forms.</b> The <i>Summary Report,</i> individual <i>LPPI Application forms</i> and <i>Total Premium</i> collected by the COOPERATIVE for the LOAN releases during the month shall be submitted to 1 CISP <b>on or before the 15<sup>th</sup> day of the succeeding month</b>, if that day falls on Saturday, Sunday or Holiday, the next business day.</p>
+    <p>1 CISP shall not be liable for any claim filed in case the COOPERATIVE remits the premium and submits the summary report and application forms <b>beyond thirty one (31) calendar days after the month of loan releases.</b></p>
+  </div>
+
+  <p class="me-3" style="text-align: justify;">
+  <b>5.<u class="ms-3">Claim Requirements.</u></b> All claims shall be filed together with reasonable proofs of death and all supporting information. Notice of claim shall be submitted to 1 CISP within thirty one (31) calendar days and proof of loss within ninety (90) days from the date of death, except when it can be shown that failer to submit the notice and proof within such time is due to valid reason.
+  </p>
+
+  <p class="me-3 ms-4" style="text-align: justify;">
+    1 CISP, upon receipt of a notice of claim, will furnish to the Claimant such forms as are usually required by 1 CISP for filing proofs of loss. All certificates, information and evidence, other than the usual forms, which 1 CISP shall reasonably require in support of a claim.
+  </p>
+  <p class="me-3 ms-4" style="text-align: justify;">
+    The following are the basic requirements on claiming the insurance benefit. <b>1 CISP has the right to require additional requirements on a case to case basis</b>.
+  </p>
+
+  <div class="me-5">
+    <table class="table table-striped table-hover mx-auto me-2">
+      <thead class="text-center">
+        <th>Claim</th>
+        <th>Requirement</th>
+      </thead>
+      <tbody>
+      <% retention = 350000 %>
+        <tr>
+          <td class="text-center"><%= to_currency(retention) %> and below</td>
+          <td>
+            <ul>
+              <li>Claimant's Statement</li>
+              <li>Certified true copy of Loan Ledger or latest Statement of Account</li>
+              <li>Certified True Copy of the Death Certificate signed and sealed by the Local Civil Registrar</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center"><%= to_currency(retention + 1) %> and above</td>
+          <td>
+            <ul>
+              <li>Notarized Claimant's Statement</li>
+              <li>Certified true copy of Loan Ledger or latest Statement of Account</li>
+              <li>Certified True Copy of the Death Certificate signed and sealed by the Local Civil Registrar</li>
+              <li>Attending Physician's Statement (if died in the hospital)</li>
+              <li>If death is due to accident - Police Report</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="me-3" style="text-align: justify;">
+  <b>6.<u class="ms-3">Open Line Communication with 1 CISP.</u></b> The COOPERATIVE shall maintain a close dialogue and communication with 1 CISP on all matters relative to the foregoing with the end in view that services extended shall always be updated, efficient and responsive to the needs of their organization as well as its borrowers.
+  </p>
+
+  <p class="me-3" style="text-align: justify;">
+  <b>7.<u class="ms-3">Compliance in Good Faith.</u></b> The COOPERATIVE pledges its faithful compliance in good faith of the foregoin agreement and commitment.
+  </p>
+  
+</div>

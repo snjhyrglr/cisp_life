@@ -19,7 +19,7 @@ class LppiRemarksController < ApplicationController
   # GET /lppi_remarks/new
   def new
     @lppi_remark = LppiRemark.new
-    @quote_item = QuoteItem.find(params[:qi])
+    # @quote_item = QuoteItem.find(params[:qi])
     # @lppi_remark = @quote_item.lppi_remarks.build
     
   end
@@ -33,8 +33,9 @@ class LppiRemarksController < ApplicationController
     @lppi_remark = LppiRemark.new(lppi_remark_params)
     @lppi_remark.quote_id = params[:q]
     @lppi_remark.quote_item_id = params[:qi]
-    # @quote_item = QuoteItem.update(quote_item_params)
-    # debugger
+
+    # @quote_item = @lppi_remark.new(lppi_remark_params)
+
     respond_to do |format|
       if @lppi_remark.save
         # format.html { redirect_to lppi_remark_url(@lppi_remark), notice: "Lppi remark was successfully created." }
@@ -86,6 +87,8 @@ class LppiRemarksController < ApplicationController
     end
 
     def quote_item_params
-      params.require(:quote_item).permit(:id, lppi_remarks_attributes: [:remarks])
+      params.require(:quote_item).permit(
+        lppi_remarks_attributes: [:remarks]
+        )
     end
 end

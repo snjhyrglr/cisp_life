@@ -69,6 +69,7 @@
         <th>Status</th>
         <th>Remarks</th>
         <th>Action</th>
+        <th>Health Declaration</th>
 
       </tr>
     </thead>
@@ -104,6 +105,13 @@
           <td>
             <% if q.status == "Pending" %>
               <%= link_to "View Remarks", lppi_remark_path(q: @quote.id, qi: q.id), data: { turbo_frame: "remote_modal_show" } %>
+            <% else %>
+              <p>-</p>
+            <% end %>
+          </td>
+          <td>
+            <% if q.coverage > 50000 %>
+              <%= link_to "Add Health Dec.", "#" %>
             <% else %>
               <p>-</p>
             <% end %>

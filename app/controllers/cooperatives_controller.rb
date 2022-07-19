@@ -54,7 +54,8 @@ class CooperativesController < ApplicationController
   def update
     respond_to do |format|
       if @cooperative.update(cooperative_params)
-        format.html { redirect_to cooperative_url(@cooperative), notice: "Cooperative was successfully updated." }
+        flash[:success] = "Cooperative was successfully updated."
+        format.html { redirect_to cooperatives_path }
         format.json { render :show, status: :ok, location: @cooperative }
       else
         format.html { render :edit, status: :unprocessable_entity }

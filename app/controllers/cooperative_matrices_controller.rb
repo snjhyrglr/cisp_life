@@ -8,6 +8,11 @@ class CooperativeMatricesController < ApplicationController
 
   # GET /cooperative_matrices/1 or /cooperative_matrices/1.json
   def show
+    min_age = CooperativeMatrix.find(params[:id]).entry_age_max
+    max_age = CooperativeMatrix.find(params[:id]).exit_age
+    @over_age = Rate.where(min_age: min_age.., max_age: ..max_age)
+    @max_cov = Rate.where(min_age: min_age.., max_age: ..max_age).maximum(:max_coverage)
+    # puts @over_age.length
   end
 
   # GET /cooperative_matrices/new
@@ -26,7 +31,8 @@ class CooperativeMatricesController < ApplicationController
     respond_to do |format|
       if @cooperative_matrix.save
 
-        format.html { redirect_to cooperative_matrix_url(@cooperative_matrix), notice: "Cooperative matrix was successfully created." }
+        flash[:success] = "Coop Rate Successfully added."
+        format.html { redirect_to cooperative_matrix_url(@cooperative_matrix)}
         format.json { render :show, status: :created, location: @cooperative_matrix }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +72,6 @@ class CooperativeMatricesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cooperative_matrix_params
-      params.require(:cooperative_matrix).permit(:cooperative_id, :cooperative_incharge, :incharge_position, :premium_rate, :coop_service_fee, :lppi_rate_id, :add_tpd_enable, :add_tpd_rate, :adb_enable, :adb_rate, :total_premium_rate)
+      params.require(:cooperative_matrix).permit(:cooperative_id, :cooperative_incharge, :incharge_position, :premium_rate, :coop_service_fee, :lppi_rate_id, :add_tpd_enable, :add_tpd_rate, :adb_enable, :adb_rate, :total_premium_rate, :entry_age_min, :entry_age_max, :exit_age, :NEL, :NML, :min_borrowers)
     end
 end

@@ -1,0 +1,146 @@
+<div class="ms-5 mb-3">
+ <p><b>1.<u class="ms-3">Benefit Provision.</u></b></p> 
+
+  <div class="ms-4 me-3">
+    <p style="text-align: justify;">
+      Sum insured shall be based on the <i>Principal</i> amount of loan of the borrower. Proceeds of the benefit shall be in check to the COOPERATIVE covering the <b>outstanding loan banalce</b> of the deceased insured borrower. The <b>remaining proceeds</b>, if any, covering the payments made by the deceased insured borrower shall be paid in check to the <b>designated beneficiaries</b> in equal distribution.
+    </p>
+    <p style="text-align: justify;">
+      In case the insured has not declared the names of his or her beneficiaries, the following hierarchy of beneficiaries shall be followed:
+      <ul>
+        <li>Spouse</li>
+        <li>Surviving Children</li>
+        <li>Surviving Parents</li>
+        <li>Surviving Siblings (from eldest to youngest)</li>
+        <li>Estate</li>
+      </ul>
+    </p>
+  </div>
+
+  <p class = "me-3" style="text-align: justify;"><b>2.<u class="ms-3">Period of Coverage.</u></b> The period of insurance cover of a borrower shall be the same period as the term of loan repayment and shall be terminated either on the date of the end of the repayment period or upon full payment of the loan obligation, or upon failure to pay the premium.</p>
+
+  <p class = "me-3" style="text-align: justify;"><b>3.<u class="ms-3">Extension of Coverage for Overage Borrowers (renewal applicants).</u></b> The coverage of borrowers of the Cooperative with "renewal" application whose age is more than <b>< %= cooperative_matrix.entry_age_max %> years old</b> shall be covered by 1 CISP under this plan subject to the following terms and conditions:</p>
+
+  <p class = "me-3" style="text-align: justify;">The following special rates shall be applied to the overage borrowers: </p>
+
+  <div class="me-5">
+    <table class="table table-striped table-hover">
+      <thead class="text-center">
+        <th>Attained Age</th>
+        <th>Monthy Rate/1000</th>
+        <th>Applicable to Sum Insured</th>
+        <th>Maximum Coverage per Year</th>
+      </thead>
+      <tbody>
+        <% @over_age.each do |oa| %>
+          <tr class="text-center">
+            <td> <%= oa.min_age %> - <%= oa.max_age %> </td>
+            <td> <%= oa.rate %> </td>
+            <% if oa.min_coverage == 1 %>
+              <td> <%= to_currency(oa.max_coverage) %> and below </td>
+            <% else %>
+              <td> Above <%= to_currency(oa.min_coverage)%> to <%= to_currency(oa.max_coverage) %> </td>
+            <% end %>
+            <td> <%= to_currency(@max_cov) %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <p class = "me-3" style="text-align: justify;">The coverage of a renewal applicant with age more than <b><%= cooperative_matrix.entry_age_max %> years old</b> whose coverage lapsed more than two (2) years will be deemed as "reinstated" members and subject to one (1) year contestability period. <b>Overage applicant with a "lapsed coverage" of more than three (3) years from its last expiry date of coverage shall no longer be accepted for coverage</b>.</p>
+
+  <p class = "me-3" style="text-align: justify;">In case the <i>"reinstated"</i> overage borrower died within the one (1) year contestability period, the claim will be contested and denied and consequently, premium will be refunded accordingly;</p>
+  
+  <p class = "me-3" style="text-align: justify;">The entry age under this plan is <b><%= cooperative_matrix.entry_age_min %> - <%= cooperative_matrix.entry_age_max %> years old</b>. Therefore, coverage shall be automatically declined for "new" borrower whose age is more than <b><%= cooperative_matrix.entry_age_max %> years old</b>. The exit age under this plan is <b><%= cooperative_matrix.exit_age %> years old</b>.</p>
+
+  <p class = "me-3" style="text-align: justify;"><b>4.<u class="ms-3">Incontestability Clause.</u></b> The coverage of the new insured members as of the Effective Date of Coverage shall be incontestable after it has been in force during the lifetime of the Insured for a period of <b>one (1) year</b>, except for
+  </p>
+
+  <div class="me-3" style="text-align: justify;">
+    <ol type="a">
+      <li>non-payment premium</li>
+      <li>
+        material misrepresentaion
+          <ul>
+            <li>misstatement of age (ineligible at the time of application)</li>
+          </ul>
+      </li>
+      <li>
+        concealment of known material facts whether intentional or unintentional
+          <ul>
+            <li>
+              pre-existing condition, is any medical condition, illness, injury or any related condition(s) which signs and symptoms were present and any cautious individual would have sought consult with a medical professional in the last twelve (12) months prior to enrollment in this plan.
+              <ol type="1">
+                <li>Dreaded Diseases</li>
+                <li>Terminal Illness</li>
+                <li>Chronic Diseases</li>
+              </ol>
+            </li>
+          </ul>
+      </li>
+      <li>or any grounds recognized by law and jurisprudence</li>
+    </ol>
+  </div>
+
+  <p class = "me-3" style="text-align: justify;">In case a NEW applicant died within one (1) year from the date of his or her first coverage or last reinstatement date under this plan and the cause of death is due to <i>pre-existing condition</i>, 1 CISP shall not pay the benefit and thus, premium shall be refunded to the cooperative. The following causes of death are examples of pre-existing conditions but not limited to</p>
+
+  <div class="me-3" style="text-align: justify;">
+    <ul>
+      <li>
+        Cancer;
+        <ul>
+          <li>Carcinoma in situ including of the cervix</li>
+          <li>Ductal Carcinoma in situ of the breast</li>
+          <li>Papillary Carcinoma of the bladder and Stage 1 Prostate Cancer</li>
+          <li>All skin cancers except malignant melanoma</li>
+          <li>Stage 1 Hodgkin disease</li>
+          <li class="mb-3">Tumors manifesting as complications of Acquired Immune Deficiency Syndrome</li>
+          The actual undergoing of a transplang as a recipient of one of the following human organs:
+            <ol type="a">
+              <li>Kidney</li>
+              <li>Lung(s)</li>
+              <li>Liver</li>
+              <li>Heart</li>
+              <li>Bone marrow</li>
+            </ol>
+          <li>Paralysis / Paraplegia</li>
+          <li>Multiple Sclerosis</li>
+          <li>Primary Pulmonary Arterial Hypertension</li>
+          <li>Heart Valve Replacement</li>
+          <li>Surgery to Aorta</li>
+          <li>Coma</li>
+          <li>Chronic Liver Disease</li>
+          <li>Chronic Lung Disease</li>
+          <li>Aplastic Anaemia</li>
+          <li>Brain Surgery</li>
+          <li>Bacterial Meningitis</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <p class = "me-3" style="text-align: justify;"><b>5.<u class="ms-3">Waived Constestability.</u></b> The Constestability of the coverage of the existing borrowers and/or old members of the Cooperative who are listed in the attached "Master List of Members of the Cooperative" and "Master List of Active Borrowers of the Cooperative" shall be waived by 1 CISP. The said master lists shall be submitted by the COOPERATIVE to 1 CISP not later than 31 days from the date of signing of this Memorandum of Agreement (MOA). Otherwise, all members shall be treated as "NEW" members after the said due date. 
+  </p>
+
+  <p class = "me-3" style="text-align: justify;">All members who are not listed in the attached master lists shall also be treated as "New" applicant for insurance and shall be subject to "one year contestability period"</p>
+
+  <p class = "me-3" style="text-align: justify;"><b>6.<u class="ms-3">Cooperative Service Incentive.</u></b> The COOPERATIVE shall be entitled to a service incentive equivalent to <b><%= (cooperative_matrix.coop_service_fee * 100).humanize %> percent (<%= number_to_percentage(cooperative_matrix.coop_service_fee * 100, precision: 0) %>)</b> of the gross premium remittance for its administrative work such as preparation of the enrollment of its borrowers, compliance of underwriting requirements, summary reports, and remittance of premiums. 
+  
+  <p class = "me-3" style="text-align: justify;"><b>7.<u class="ms-3">Exclusions.</u></b> 1 CISP shall not pay death benefit if the member:
+  
+  <div class="me-3" style="text-align: justify;">
+    <ol type="a">
+      <li>commits suicide within one (1) year from the effective date of the Group Policy or from the date of reinstatement; and</li>
+      <li>engage in military (ground, naval or aviation) services</li>
+    </ol>
+  </div> 
+  
+  <p class = "me-3" style="text-align: justify;"><b>8.<u class="ms-3">Compliance with AMLA Rrequirements.</u></b> The 1 CISP may, in some instances, require the COOPERATIVE to submit additional documents aside from those stated in this Agreement if upon review of the master list of borrowers and the amount of loan and other documents submitted, the 1 CISP has observed that the said transactions are covered by the Anti-Money Laundering Act. 
+
+  <p class = "me-3" style="text-align: justify;"><b>9.<u class="ms-3">Experience Review.</u></b> 1 CISP shall conduct a periodic review of the benefits paid to the COOPERATIVE in relation to the premium rate. The 1 CISP reserves the right to unilaterally adjust the coverage and/or gross premium for the plan as may be warranted by actual claims experience subject to mutual agreement with the cooperative. Any adjustment in the premium rate shall be effective only upon the signing of a supplemental agreement which shall form an integral part of this agreement. 
+
+  <p class = "me-3" style="text-align: justify;"><b>10.<u class="ms-3">Compliance in Good Faith.</u></b> 1 CISP pledges its faithful compliance in good faith of the foregoing agreement and commitment.
+  </p>
+
+</div>
